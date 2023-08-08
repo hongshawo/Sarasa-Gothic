@@ -1,6 +1,6 @@
 {
 	"buildOptions":{},
-	"familyOrder": ["gothic", "ui", "mono", "mono-slab", "term", "term-slab", "fixed", "fixed-slab"],
+	"familyOrder": ["static", "static-slab"],
 	"families": {
 		"gothic": {
 			"isTNUM": true,
@@ -28,16 +28,16 @@
 				"ko_KR": "사라사 고딕 UI"
 			}
 		},
-		"mono": {
+		"static": {
 			"isMono": true,
 			"latinGroup": "iosevka-n",
 			"naming": {
-				"en_US": "Sarasa Mono",
-				"zh_CN": "等距更纱黑体",
-				"zh_TW": "等距更紗黑體",
-				"zh_HK": "等距更紗黑體",
-				"ja_JP": "更紗等幅ゴシック",
-				"ko_KR": "사라사 고정 폭고딕"
+				"en_US": "Sarasa Static",
+				"zh_CN": "固定更纱黑体",
+				"zh_TW": "固定更紗黑體",
+				"zh_HK": "固定更紗黑體",
+				"ja_JP": "更紗固定ゴシック",
+				"ko_KR": "사라사 등폭 폭고딕"
 			}
 		},
 		"term": {
@@ -66,16 +66,16 @@
 				"ko_KR": "Sarasa Fixed"
 			}
 		},
-		"mono-slab": {
+		"static-slab": {
 			"isMono": true,
 			"latinGroup": "iosevka-n-slab",
 			"naming": {
-				"en_US": "Sarasa Mono Slab",
-				"zh_CN": "等距更纱黑体 Slab",
-				"zh_TW": "等距更紗黑體 Slab",
-				"zh_HK": "等距更紗黑體 Slab",
-				"ja_JP": "更紗等幅ゴシック Slab",
-				"ko_KR": "사라사 고정 폭고딕 Slab"
+				"en_US": "Sarasa Static Slab",
+				"zh_CN": "固定更纱黑体 Slab",
+				"zh_TW": "固定更紗黑體 Slab",
+				"zh_HK": "固定更紗黑體 Slab",
+				"ja_JP": "更紗固定ゴシック Slab",
+				"ko_KR": "사라사 등폭 폭고딕 Slab"
 			}
 		},
 		"term-slab": {
