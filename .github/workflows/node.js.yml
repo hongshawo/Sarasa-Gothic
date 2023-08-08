@@ -23,6 +23,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: |
+        cat /proc/cpuinfo
+        top -n 1 -b
+        df -h
         pwd
         ls -aFl
         set
@@ -34,8 +37,17 @@ jobs:
         source afdko_env/bin/activate
         python -m pip install https://github.com/adobe-type-tools/afdko/releases/download/3.9.6/afdko-3.9.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
         npm install
+    - run: |
+        python -m venv afdko_env
+        source afdko_env/bin/activate
         npm run build -- ttf
+    - run: |
+        python -m venv afdko_env
+        source afdko_env/bin/activate
         npm run build -- ttc
+    - run: |
+        python -m venv afdko_env
+        source afdko_env/bin/activate
         npm run build -- super-ttc
     - name: Upload Artifacts
       uses: actions/upload-artifact@v3
