@@ -42,15 +42,18 @@ jobs:
     - run: |
         python -m venv afdko_env
         source afdko_env/bin/activate
-        npm run build -- ttf
+        # npm run build -- ttf
+        npm run build -- full-clean
     - run: |
-        python -m venv afdko_env
-        source afdko_env/bin/activate
-        npm run build -- ttc
+        # python -m venv afdko_env
+        # source afdko_env/bin/activate
+        # npm run build -- ttc
+        :
     - run: |
-        python -m venv afdko_env
-        source afdko_env/bin/activate
-        npm run build -- super-ttc
+        # python -m venv afdko_env
+        # source afdko_env/bin/activate
+        # npm run build -- super-ttc
+        :
     - name: Upload Artifacts
       uses: actions/upload-artifact@v3
       with:
