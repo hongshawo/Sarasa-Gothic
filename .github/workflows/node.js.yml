@@ -43,7 +43,7 @@ jobs:
     - run: |
         # python -m venv afdko_env
         source afdko_env/bin/activate
-        npm run build -- ttf
+        npm run build -- ttf --jobs=4
         # npm run build -- full-clean
     - run: |
         # python -m venv afdko_env
