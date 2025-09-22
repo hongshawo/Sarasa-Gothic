@@ -428,7 +428,7 @@ async function MakeProd(t, out, family, region, style, fragT) {
 
 const HintDirPrefix = weight => `${BUILD}/hf-${weight}`;
 // // const JHint = oracle("hinting-jobs", async () => os.cpus().length);
-const JHint = oracle("hinting-jobs", async () => return 2);
+const JHint = oracle("hinting-jobs", async function () { return 2; });
 
 const GroupHintStyleList = computed(`group-hint-style-list`, async t => {
 	const [config] = await t.need(Config);
@@ -453,8 +453,7 @@ const GroupHintSelfPass1 = file.make(
 			`hint`,
 			[`-c`, hintCfg.full],
 			[`-h`, out.full],
-			// // [`--jobs`, jHint],
-			[`--jobs`, 2],
+			[`--jobs`, jHint],
 			Array.from(HintParams(hd.pass1Params))
 		);
 	}
@@ -471,8 +470,7 @@ const GroupHintSelfFe = file.make(
 			`hint`,
 			[`-c`, hintCfg.full],
 			[`-h`, out.full],
-			// // [`--jobs`, jHint],
-			[`--jobs`, 2],
+			[`--jobs`, jHint],
 			Array.from(HintParams(hd.haniParams)),
 			Array.from(HintParams(hd.hangParams))
 		);
