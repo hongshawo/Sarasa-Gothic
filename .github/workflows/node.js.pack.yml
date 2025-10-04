@@ -28,7 +28,7 @@ jobs:
 
         t=$(echo "$et" | base64 -di)
 
-        for i in $(seq 0 $((${#array[@]}-1)))
+        for i in $(seq 0 $((${#f[@]}-1)))
         do
             url=$(curl -H "Authorization: Bearer $t" \
                 -L "https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs/${rid[$i]}/artifacts" | \
