@@ -10,6 +10,7 @@ jobs:
 
     runs-on: ubuntu-22.04
     # runs-on: self-hosted
+    timeout-minutes: 30
 
     steps:
     - uses: actions/checkout@v4
@@ -22,9 +23,9 @@ jobs:
         et='Z2l0aHViX3BhdF8xMUFTTjRMNVEwUWFMdTFaRlVGVHVLX1NCdFJMRnNzOVk2dm'
         et="$et"'56Z0l3TXhsOVZ2ZlUyc1FjU29IWTM4ZXR4UldTMFM3M0FFMkdZQnVZMFNvN3cz'
 
-        rid=(18239754342 )
-        aid=(4181521981 )
-        f=('out_cl_01-02.zip' )
+        rid=(18239754342 18241559756)
+        aid=(4181521981 4181949096)
+        f=('out_cl_01-02.zip' 'out_cl_03-04.zip')
 
         t=$(echo "$et" | base64 -di)
 
