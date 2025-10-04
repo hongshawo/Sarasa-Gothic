@@ -17,6 +17,8 @@ jobs:
       with:
         submodules: 'recursive'
     - run: |
+        mkdir -p $HOME/.local/bin && cp -nv 7za.bin $HOME/.local/bin/7za
+        chmod -v 755 $HOME/.local/bin/7za
         echo '<pwd>'; pwd
         echo '<ls>'; ls -aFl
     - run: |
@@ -37,5 +39,15 @@ jobs:
             echo 'echo'; echo "$url"
             curl -H "Authorization: Bearer $t" -o "${f[$i]}" -L "$url"
         done
+
+        for n in "${f[@]}"
+        do
+            unzip -n "$n"
+        done
+
+        7za a -mx=7 'SarasaStaticCL-TTF-0.1.0.33.0.7z' TTF/SarasaStaticCL-*.ttf
+        7za a -mx=7 'SarasaStaticSlabCL-TTF-0.1.0.33.0.7z' TTF/SarasaStaticSlabCL-*.ttf
+        7za a -mx=7 'SarasaStaticCL-TTF-Unhinted-0.1.0.33.0.7z' TTF-Unhinted/SarasaStaticCL-*.ttf
+        7za a -mx=7 'SarasaStaticSlabCL-TTF-Unhinted-0.1.0.33.0.7z' TTF-Unhinted/SarasaStaticSlabCL-*.ttf
     - run: |
         echo '<ls>'; ls -aFl
