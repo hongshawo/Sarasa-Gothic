@@ -7,24 +7,24 @@
 			"dependencies": [
 				[
 					{
-						"id": "Builtin::FileUpdated::/home/rocky/actions-runner/_work/Sarasa-Gothic/Sarasa-Gothic/verdafile.mjs",
+						"id": "Builtin::FileUpdated::/home/runner/work/Sarasa-Gothic/Sarasa-Gothic/verdafile.mjs",
 						"args": [
-							"/home/rocky/actions-runner/_work/Sarasa-Gothic/Sarasa-Gothic/verdafile.mjs"
+							"/home/runner/work/Sarasa-Gothic/Sarasa-Gothic/verdafile.mjs"
 						]
 					}
 				]
 			],
 			"revision": 2
 		},
-		"Builtin::FileUpdated::/home/rocky/actions-runner/_work/Sarasa-Gothic/Sarasa-Gothic/verdafile.mjs": {
-			"id": "Builtin::FileUpdated::/home/rocky/actions-runner/_work/Sarasa-Gothic/Sarasa-Gothic/verdafile.mjs",
+		"Builtin::FileUpdated::/home/runner/work/Sarasa-Gothic/Sarasa-Gothic/verdafile.mjs": {
+			"id": "Builtin::FileUpdated::/home/runner/work/Sarasa-Gothic/Sarasa-Gothic/verdafile.mjs",
 			"volatile": false,
 			"result": {
 				"$": [],
-				"full": "/home/rocky/actions-runner/_work/Sarasa-Gothic/Sarasa-Gothic/verdafile.mjs",
+				"full": "/home/runner/work/Sarasa-Gothic/Sarasa-Gothic/verdafile.mjs",
 				"prefix": "",
 				"root": "/",
-				"dir": "home/rocky/actions-runner/_work/Sarasa-Gothic/Sarasa-Gothic",
+				"dir": "home/runner/work/Sarasa-Gothic/Sarasa-Gothic",
 				"base": "verdafile.mjs",
 				"ext": ".mjs",
 				"name": "verdafile",
@@ -2740,7 +2740,7 @@
 		"Builtin::Oracle::oracle:check-ttfautohint-exists": {
 			"id": "Builtin::Oracle::oracle:check-ttfautohint-exists",
 			"volatile": false,
-			"result": "/home/rocky/.local/bin/ttfautohint",
+			"result": "/home/runner/.local/bin/ttfautohint",
 			"dependencies": [],
 			"revision": 3
 		},
