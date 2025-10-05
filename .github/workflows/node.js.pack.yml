@@ -25,11 +25,12 @@ jobs:
         et='Z2l0aHViX3BhdF8xMUFTTjRMNVEwUWFMdTFaRlVGVHVLX1NCdFJMRnNzOVk2dm'
         et="$et"'56Z0l3TXhsOVZ2ZlUyc1FjU29IWTM4ZXR4UldTMFM3M0FFMkdZQnVZMFNvN3cz'
 
-        rid=(18239754342 18241559756)
-        aid=(4181521981 4181949096)
-        f=('out_cl_01-02.zip' 'out_cl_03-04.zip')
-        l=('SC')
+        rid=(18239754342 18241559756 18244590770 18247060778 18262597272)
+        aid=(4181521981 4181949096 4182782565 4183505998 4186932166)
+        f=('out_cl_01-02.zip' 'out_cl_03-04.zip' 'out_05-06_cl.zip' 'out_07-08_cl.zip' 'out_09-10_cl.zip')
+        l=('CL')
         c=7 # 0-7-9
+        d='128m'
         v='0.1.0.33.0'
 
         t=$(echo "$et" | base64 -di)
@@ -53,16 +54,16 @@ jobs:
         cd TTF
         for e in "${l[@]}"
         do
-            7za a -mx=$c "$dir/SarasaStatic$e-TTF-$v.7z" SarasaStatic"$e"-*.ttf
-            7za a -mx=$c "$dir/SarasaStaticSlab$e-TTF-$v.7z" SarasaStaticSlab"$e"-*.ttf
+            7za a -mx=$c -md="$d" -bb3 "$dir/SarasaStatic$e-TTF-$v.7z" SarasaStatic"$e"-*.ttf
+            7za a -mx=$c -md="$d" -bb3 "$dir/SarasaStaticSlab$e-TTF-$v.7z" SarasaStaticSlab"$e"-*.ttf
         done
         cd "$dir";
 
         cd TTF-Unhinted
         for e in "${l[@]}"
         do
-            7za a -mx=$c "$dir/SarasaStatic$e-TTF-Unhinted-$v.7z" SarasaStatic"$e"-*.ttf
-            7za a -mx=$c "$dir/SarasaStaticSlab$e-TTF-Unhinted-$v.7z" SarasaStaticSlab"$e"-*.ttf
+           7za a -mx=$c -md="$d" -bb3 "$dir/SarasaStatic$e-TTF-Unhinted-$v.7z" SarasaStatic"$e"-*.ttf
+           7za a -mx=$c -md="$d" -bb3 "$dir/SarasaStaticSlab$e-TTF-Unhinted-$v.7z" SarasaStaticSlab"$e"-*.ttf
         done
         cd "$dir";
     - run: |
@@ -70,28 +71,28 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSC-TTF-0.1.0.33.0.7z
-        path: SarasaStaticSC-TTF-0.1.0.33.0.7z
+        name: SarasaStaticCL-TTF-0.1.0.33.0.7z
+        path: SarasaStaticCL-TTF-0.1.0.33.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 2
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabSC-TTF-0.1.0.33.0.7z
-        path: SarasaStaticSlabSC-TTF-0.1.0.33.0.7z
+        name: SarasaStaticSlabCL-TTF-0.1.0.33.0.7z
+        path: SarasaStaticSlabCL-TTF-0.1.0.33.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 3
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSC-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticSC-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticCL-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticCL-TTF-Unhinted-0.1.0.33.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 4
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabSC-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticSlabSC-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticSlabCL-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticSlabCL-TTF-Unhinted-0.1.0.33.0.7z
         if-no-files-found: warn
         compression-level: 0
