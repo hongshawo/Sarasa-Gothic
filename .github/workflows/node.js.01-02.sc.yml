@@ -51,3 +51,10 @@ jobs:
         name: out_01-02_sc
         path: out
         if-no-files-found: warn
+    - name: Upload Artifacts 2
+      uses: actions/upload-artifact@v4
+      with:
+        name: .build
+        path: .build
+        if-no-files-found: warn
+        include-hidden-files: true
