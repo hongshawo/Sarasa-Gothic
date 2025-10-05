@@ -40,11 +40,11 @@ jobs:
         npm install
     - run: |
         source afdko_env/bin/activate
-        cp -fv CL/config.09.ncb.json config.json && npm run build -- ttf
+        cp -fv CL/config.09.ncb.json config.json && sudo nice -n -15 npm run build -- ttf
         # npm run build -- full-clean
     - run: |
         source afdko_env/bin/activate
-        cp -fv CL/config.10.scb.json config.json && npm run build -- ttf
+        cp -fv CL/config.10.scb.json config.json && sudo nice -n -15 npm run build -- ttf
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
