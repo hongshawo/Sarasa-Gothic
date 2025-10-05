@@ -28,6 +28,9 @@ jobs:
         rid=(18239754342 18241559756)
         aid=(4181521981 4181949096)
         f=('out_cl_01-02.zip' 'out_cl_03-04.zip')
+        l=('SC')
+        c=7 # 0-7-9
+        v='0.1.0.33.0'
 
         t=$(echo "$et" | base64 -di)
 
@@ -45,33 +48,50 @@ jobs:
             unzip -n "$n"
         done
 
-        7za a -mx=7 'SarasaStaticCL-TTF-0.1.0.33.0.7z' TTF/SarasaStaticCL-*.ttf
-        7za a -mx=7 'SarasaStaticSlabCL-TTF-0.1.0.33.0.7z' TTF/SarasaStaticSlabCL-*.ttf
-        7za a -mx=7 'SarasaStaticCL-TTF-Unhinted-0.1.0.33.0.7z' TTF-Unhinted/SarasaStaticCL-*.ttf
-        7za a -mx=7 'SarasaStaticSlabCL-TTF-Unhinted-0.1.0.33.0.7z' TTF-Unhinted/SarasaStaticSlabCL-*.ttf
+        dir=$PWD
+
+        cd TTF
+        for e in "${l[@]}"
+        do
+            7za a -mx=$c "$dir/SarasaStatic$e-TTF-$v.7z" SarasaStatic"$e"-*.ttf
+            7za a -mx=$c "$dir/SarasaStaticSlab$e-TTF-$v.7z" SarasaStaticSlab"$e"-*.ttf
+        done
+        cd "$dir";
+
+        cd TTF-Unhinted
+        for e in "${l[@]}"
+        do
+            7za a -mx=$c "$dir/SarasaStatic$e-TTF-Unhinted-$v.7z" SarasaStatic"$e"-*.ttf
+            7za a -mx=$c "$dir/SarasaStaticSlab$e-TTF-Unhinted-$v.7z" SarasaStaticSlab"$e"-*.ttf
+        done
+        cd "$dir";
     - run: |
         echo '<ls>'; ls -aFl
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticCL-TTF-0.1.0.33.0.7z
-        path: SarasaStaticCL-TTF-0.1.0.33.0.7z
+        name: SarasaStaticSC-TTF-0.1.0.33.0.7z
+        path: SarasaStaticSC-TTF-0.1.0.33.0.7z
         if-no-files-found: warn
+        compression-level: 0
     - name: Upload Artifacts 2
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabCL-TTF-0.1.0.33.0.7z
-        path: SarasaStaticSlabCL-TTF-0.1.0.33.0.7z
+        name: SarasaStaticSlabSC-TTF-0.1.0.33.0.7z
+        path: SarasaStaticSlabSC-TTF-0.1.0.33.0.7z
         if-no-files-found: warn
+        compression-level: 0
     - name: Upload Artifacts 3
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticCL-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticCL-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticSC-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticSC-TTF-Unhinted-0.1.0.33.0.7z
         if-no-files-found: warn
+        compression-level: 0
     - name: Upload Artifacts 4
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabCL-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticSlabCL-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticSlabSC-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticSlabSC-TTF-Unhinted-0.1.0.33.0.7z
         if-no-files-found: warn
+        compression-level: 0
