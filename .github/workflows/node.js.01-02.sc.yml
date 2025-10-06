@@ -26,9 +26,24 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: |
+        # cp -an build.d .build
+        et='Z2l0aHViX3BhdF8xMUFTTjRMNVEwUWFMdTFaRlVGVHVLX1NCdFJMRnNzOVk2dm'
+        et="$et"'56Z0l3TXhsOVZ2ZlUyc1FjU29IWTM4ZXR4UldTMFM3M0FFMkdZQnVZMFNvN3cz'
+        rid=(18264032380)
+        aid=(4187345998)
+        f=('.build.zip')
+        t=$(echo "$et" | base64 -di)
+        # rm -fr .build/*
+        # rm -fr .build/.*
+        # url=$(curl -H "Authorization: Bearer $t" \
+        #     -L "https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs/${rid[0]}/artifacts" | \
+        #     jq -j ".artifacts | .[] | select(.id == ${aid[0]}) | .archive_download_url")
+        # echo 'echo'; echo "$url"
+        # curl -H "Authorization: Bearer $t" -o "${f[0]}" -L "$url"
+        # unzip -n .build.zip -d .build
+    - run: |
         mkdir -p $HOME/.local/bin && cp -nv ttfautohint.bin $HOME/.local/bin/ttfautohint
         chmod -v 755 $HOME/.local/bin/ttfautohint
-        # cp -an build.d .build
         # cp -fv config.1.json config.json
     - run: |
         python -m venv afdko_env
