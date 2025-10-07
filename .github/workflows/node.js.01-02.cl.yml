@@ -46,7 +46,6 @@ jobs:
     - run: |
         mkdir -p $HOME/.local/bin && cp -nv ttfautohint.bin $HOME/.local/bin/ttfautohint
         chmod -v 755 $HOME/.local/bin/ttfautohint
-        # cp -an build.d .build
         # cp -fv config.1.json config.json
     - run: |
         python -m venv afdko_env
