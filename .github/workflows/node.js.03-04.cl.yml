@@ -48,7 +48,7 @@ jobs:
             jq -j ".artifacts | .[] | select(.name == \".build\") | .archive_download_url")
         echo "archive_download_url: $url"
         curl -H "Authorization: Bearer $t" -o "$f" -L "$url"
-        unzip -n .build.zip -d .build    
+        unzip -n .build.zip -d .build
     - run: |
         mkdir -p $HOME/.local/bin && cp -nv ttfautohint.bin $HOME/.local/bin/ttfautohint
         chmod -v 755 $HOME/.local/bin/ttfautohint
