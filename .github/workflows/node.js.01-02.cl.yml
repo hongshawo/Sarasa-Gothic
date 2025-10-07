@@ -8,8 +8,8 @@ on: workflow_dispatch
 jobs:
   build:
 
-    runs-on: ubuntu-22.04
-    # runs-on: self-hosted
+    # runs-on: ubuntu-22.04
+    runs-on: self-hosted
 
     strategy:
       matrix:
@@ -26,6 +26,24 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: |
+        et='Z2l0aHViX3BhdF8xMUFTTjRMNVEwUWFMdTFaRlVGVHVLX1NCdFJMRnNzOVk2dm'
+        et="$et"'56Z0l3TXhsOVZ2ZlUyc1FjU29IWTM4ZXR4UldTMFM3M0FFMkdZQnVZMFNvN3cz'
+        pre='Node.js.00-00.xx CI'
+        f='.build.zip'
+        t=$(echo "$et" | base64 -di)
+        rm -fr .build/*
+        rm -fr .build/.[[:alpha:]]*
+        # rid=$(curl -H "Authorization: Bearer $t" \
+        #     -L 'https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs' | \
+        #     jq -j ".workflow_runs | map(select(.name == \"$pre\")) | .[0] | .id")
+        # echo "id: $rid"
+        # url=$(curl -H "Authorization: Bearer $t" \
+        #     -L "https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs/$rid/artifacts" | \
+        #     jq -j ".artifacts | .[] | select(.name == \".build\") | .archive_download_url")
+        # echo "archive_download_url: $url"
+        # curl -H "Authorization: Bearer $t" -o "$f" -L "$url"
+        # unzip -n .build.zip -d .build    
+    - run: |
         mkdir -p $HOME/.local/bin && cp -nv ttfautohint.bin $HOME/.local/bin/ttfautohint
         chmod -v 755 $HOME/.local/bin/ttfautohint
         # cp -an build.d .build
@@ -33,7 +51,7 @@ jobs:
     - run: |
         python -m venv afdko_env
         source afdko_env/bin/activate
-        # python -m pip install --upgrade pip
+        python -m pip install --upgrade pip
         # python -m pip install https://github.com/adobe-type-tools/afdko/releases/download/3.9.6/afdko-3.9.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
         # python -m pip install https://github.com/adobe-type-tools/afdko/releases/download/4.0.2/afdko-4.0.2-py3-none-manylinux_2_28_x86_64.whl
         python -m pip install afdko
@@ -51,3 +69,10 @@ jobs:
         name: out_01-02_cl
         path: out
         if-no-files-found: warn
+    - name: Upload Artifacts 2
+      uses: actions/upload-artifact@v4
+      with:
+        name: .build
+        path: .build
+        if-no-files-found: warn
+        include-hidden-files: true
