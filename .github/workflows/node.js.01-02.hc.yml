@@ -37,7 +37,7 @@ jobs:
         rm -fr .build/.[[:alpha:]]*
         rid=$(curl -H "Authorization: Bearer $t" \
             -L 'https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs' | \
-            jq -j ".workflow_runs | map(select(.name == \"Node.js.09-10.cl CI\")) | .[0] | .id")
+            jq -j ".workflow_runs | map(select(.name == \"Node.js.09-10.sc CI\")) | .[0] | .id") # jq -j ".workflow_runs | map(select(.name == \"Node.js.09-10.cl CI\")) | .[0] | .id")
         echo "id: $rid"
         url=$(curl -H "Authorization: Bearer $t" \
             -L "https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs/$rid/artifacts" | \
