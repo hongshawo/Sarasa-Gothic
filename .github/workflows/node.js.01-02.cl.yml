@@ -4,6 +4,10 @@
 name: Node.js.01-02.cl CI
 
 on: workflow_dispatch
+# on:
+#   workflow_run:
+#     workflows: ["Node.js.01-02.cl CI"]
+#     types: [completed]
 
 jobs:
   build:
