@@ -3,8 +3,8 @@
 
 name: Node.js.03-04.cl CI
 
+# on: workflow_dispatch
 on:
-  # workflow_dispatch
   workflow_run:
     workflows: ["Node.js.01-02.cl CI"]
     types: [completed]
