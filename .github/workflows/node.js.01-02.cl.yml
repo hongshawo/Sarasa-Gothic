@@ -42,7 +42,15 @@ jobs:
         #     jq -j ".artifacts | .[] | select(.name == \".build\") | .archive_download_url")
         # echo "archive_download_url: $url"
         # curl -H "Authorization: Bearer $t" -o "$f" -L "$url"
-        # unzip -n .build.zip -d .build    
+        # unzip -n .build.zip -d .build
+        # #### Only this time #### #
+        url=$(curl -H "Authorization: Bearer $t" \
+            -L "https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs/18313661658/artifacts" | \
+            jq -j ".artifacts | .[] | select(.name == \".build\") | .archive_download_url")
+        echo "archive_download_url: $url"
+        curl -H "Authorization: Bearer $t" -o "$f" -L "$url"
+        unzip -n .build.zip -d .build    
+        # #### ############## #### #
     - run: |
         mkdir -p $HOME/.local/bin && cp -nv ttfautohint.bin $HOME/.local/bin/ttfautohint
         chmod -v 755 $HOME/.local/bin/ttfautohint
