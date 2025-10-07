@@ -37,8 +37,9 @@ jobs:
         pre='Node.js.01-02.cl CI'
         f='.build.zip'
         t=$(echo "$et" | base64 -di)
-        rm -fr .build/*
-        rm -fr .build/.[[:alpha:]]*
+        # rm -fr .build/*
+        # rm -fr .build/.[[:alpha:]]*
+        mkdir -p .build
         rid=$(curl -H "Authorization: Bearer $t" \
             -L 'https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs' | \
             jq -j ".workflow_runs | map(select(.name == \"$pre\")) | .[0] | .id")
