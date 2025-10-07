@@ -40,7 +40,7 @@ jobs:
             url=$(curl -H "Authorization: Bearer $t" \
                 -L "https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs/${rid[$i]}/artifacts" | \
                 jq -j ".artifacts | .[] | select(.id == ${aid[$i]}) | .archive_download_url")
-            echo 'echo'; echo "$url"
+            echo "archive_download_url: $url"
             curl -H "Authorization: Bearer $t" -o "${f[$i]}" -L "$url"
         done
 
