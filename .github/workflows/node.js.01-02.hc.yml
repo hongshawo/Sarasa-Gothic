@@ -9,6 +9,9 @@ on: workflow_dispatch
 #     workflows: ["Node.js.01-02.hc CI"]
 #     types: [completed]
 
+concurrency:
+  group: sarasagothic
+
 jobs:
   build:
 
