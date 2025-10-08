@@ -3,16 +3,16 @@
 
 name: Node.js.09-10.cl CI
 
-on: workflow_dispatch
-# on:
-#   workflow_run:
-#     workflows: ["Node.js.07-08.cl CI"]
-#     types: [completed]
+# on: workflow_dispatch
+on:
+  workflow_run:
+    workflows: ["Node.js.07-08.cl CI"]
+    types: [completed]
 
 jobs:
   build:
 
-    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     # runs-on: ubuntu-22.04
     runs-on: self-hosted
