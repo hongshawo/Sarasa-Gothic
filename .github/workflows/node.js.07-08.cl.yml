@@ -9,6 +9,9 @@ on:
     workflows: ["Node.js.05-06.cl CI"]
     types: [completed]
 
+concurrency:
+  group: sarasagothic
+
 jobs:
   build:
 
