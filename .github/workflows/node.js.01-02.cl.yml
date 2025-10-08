@@ -52,7 +52,7 @@ jobs:
         # unzip -n .build.zip -d .build
         # #### Only this time #### #
         url=$(curl -H "Authorization: Bearer $t" \
-            -L "https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs/18317895175/artifacts" | \
+            -L "https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs/18330635262/artifacts" | \
             jq -j ".artifacts | .[] | select(.name == \".build\") | .archive_download_url")
         echo "archive_download_url: $url"
         curl -H "Authorization: Bearer $t" -o "$f" -L "$url"
