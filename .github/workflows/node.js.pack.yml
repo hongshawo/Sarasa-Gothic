@@ -5,6 +5,9 @@ name: Node.js.pack CI
 
 on: workflow_dispatch
 
+concurrency:
+  group: sarasagothic
+
 jobs:
   build:
 
