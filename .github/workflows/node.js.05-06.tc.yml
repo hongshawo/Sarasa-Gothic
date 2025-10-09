@@ -3,11 +3,11 @@
 
 name: Node.js.05-06.tc CI
 
-# on: workflow_dispatch
-on:
-  workflow_run:
-    workflows: ["Node.js.03-04.tc CI"]
-    types: [completed]
+on: workflow_dispatch
+# on:
+#   workflow_run:
+#     workflows: ["Node.js.03-04.tc CI"]
+#     types: [completed]
 
 concurrency:
   group: sarasagothic
@@ -15,7 +15,7 @@ concurrency:
 jobs:
   build:
 
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     # runs-on: ubuntu-22.04
     runs-on: self-hosted
