@@ -1,4 +1,4 @@
-name: pipi CI
+name: pi CI
 
 on: workflow_dispatch
 
@@ -20,4 +20,3 @@ jobs:
         echo '<ls>'; ls -aFl
         echo '<set>'; set
         echo '<pi>'; time { echo -e 'scale=5000\n4*a(1)' | BC_LINE_LENGTH=100 bc -ql; }
-    
