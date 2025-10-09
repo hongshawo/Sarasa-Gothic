@@ -1,4 +1,4 @@
-name: Node.js.pi CI
+name: pi CI
 
 on: workflow_dispatch
 
