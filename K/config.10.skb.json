@@ -1,0 +1,96 @@
+{
+	"buildOptions": {},
+	"familyOrder": ["StaticSlab"],
+	"families": {
+		"StaticSlab": {
+			"isMono": true,
+			"latinGroup": "IosevkaNStaticSlab",
+			"naming": {
+				"en_US": "Sarasa Static Slab",
+				"zh_CN": "固定更纱黑体 Slab",
+				"zh_TW": "固定更紗黑體 Slab",
+				"zh_HK": "固定更紗黑體 Slab",
+				"ja_JP": "更紗固定ゴシック Slab",
+				"ko_KR": "사라사 고체 폭고딕 Slab"
+			}
+		}
+	},
+	"styleOrder": [
+		"Bold",
+		"BoldItalic"
+	],
+	"latinGroups": {
+		"Inter": {
+			"isCff": false,
+			"bakeFeatures": [{ "tag": "ss03" }, { "tag": "cv10" }],
+			"dropFeatures": [
+				"cv01",
+				"cv02",
+				"cv03",
+				"cv04",
+				"cv05",
+				"cv06",
+				"cv07",
+				"cv08",
+				"cv09",
+				"cv10",
+				"cv11",
+				"cv12",
+				"cv13",
+				"ss01",
+				"ss02",
+				"ss03",
+				"ss04",
+				"ss05",
+				"ss06",
+				"ss07",
+				"ss08"
+			]
+		}
+	},
+	"styles": {
+		"Bold": {
+			"name": "Bold"
+		},
+		"BoldItalic": {
+			"name": "Bold Italic",
+			"uprightStyleMap": "Bold"
+		}
+	},
+	"subfamilyOrder": ["K"],
+	"os2encodings": {
+		"K": {
+			"gbk": false,
+			"big5": false,
+			"jis": false,
+			"korean": true
+		}
+	},
+	"nameTupleSelector": {
+		"K": ["en_US", "ko_KR"]
+	},
+	"copyright": "Copyright (c) 2015-2025, Renzhi Li (aka. Belleve Invis, belleve@typeof.net). Portions Copyright (c) 2016 The Inter Project Authors. Portions Copyright (c) 2014-2021 Adobe Systems Incorporated (http://www.adobe.com/). Portions Copyright (c) 2012 Google Inc.",
+	"shsSourceMap": {
+		"defaultRegion": "SourceHanSans",
+		"region": {
+			"J": "SourceHanSans",
+			"K": "SourceHanSansK",
+			"CL": "SourceHanSansK",
+			"SC": "SourceHanSansSC",
+			"TC": "SourceHanSansTC",
+			"HC": "SourceHanSansHC"
+		},
+		"styleMap": {
+			"SemiBold": "Medium"
+		},
+		"classicalRegion": "CL",
+		"classicalOverridePrefix": "ShangguSansTC",
+		"classicalOverrideSuffixMap": {
+			"ExtraLight": "ExtraLight-subset",
+			"Light": "Light-subset",
+			"Regular": "Regular-subset",
+			"SemiBold": "Medium-subset",
+			"Bold": "Bold-subset"
+		}
+	}
+}

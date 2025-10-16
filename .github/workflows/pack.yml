@@ -1,0 +1,250 @@
+name: pack CI
+
+on: workflow_dispatch
+
+jobs:
+  build:
+
+    runs-on: ubuntu-22.04
+    # runs-on: self-hosted
+    timeout-minutes: 60
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: 'recursive'
+    - run: |
+        mkdir -p $HOME/.local/bin && cp -nv 7za.bin $HOME/.local/bin/7za
+        chmod -v 755 $HOME/.local/bin/7za
+        echo '<pwd>'; pwd
+        echo '<ls>'; ls -aFl
+    - run: |
+        et='Z2l0aHViX3BhdF8xMUFTTjRMNVEwUWFMdTFaRlVGVHVLX1NCdFJMRnNzOVk2dm'
+        et="$et"'56Z0l3TXhsOVZ2ZlUyc1FjU29IWTM4ZXR4UldTMFM3M0FFMkdZQnVZMFNvN3cz'
+        rid=( \
+            18338017516 18338516486 18338981960 18339441804 18340383796 \
+            18340429810 18342021532 18343304346 18345081580 18348182586 \
+            18348748719 18352547478 18354090686 18358579894 18353365797 \
+            18360059337 18360715612 18362137442 18363768879 18368349481 \
+            18360230752 18361635219 18363158299 18364924205 18368368279 \
+            18372251060 18373817210 18383102828 18385060609 18372289175 \
+        )
+        # aid=(4181521981 4181949096 4182782565 4183505998 4186932166)
+        re='"out_[0-9]{2}-[0-9]{2}_[a-z]{1,2}"'
+        f=( \
+            'out_01-02_cl.zip' 'out_03-04_cl.zip' 'out_05-06_cl.zip' 'out_07-08_cl.zip' 'out_09-10_cl.zip' \
+            'out_01-02_hc.zip' 'out_03-04_hc.zip' 'out_05-06_hc.zip' 'out_07-08_hc.zip' 'out_09-10_hc.zip' \
+            'out_01-02_j.zip' 'out_03-04_j.zip' 'out_05-06_j.zip' 'out_07-08_j.zip' 'out_09-10_j.zip' \
+            'out_01-02_k.zip' 'out_03-04_k.zip' 'out_05-06_k.zip' 'out_07-08_k.zip' 'out_09-10_k.zip' \
+            'out_01-02_sc.zip' 'out_03-04_sc.zip' 'out_05-06_sc.zip' 'out_07-08_sc.zip' 'out_09-10_sc.zip' \
+            'out_01-02_tc.zip' 'out_03-04_tc.zip' 'out_05-06_tc.zip' 'out_07-08_tc.zip' 'out_09-10_tc.zip' \
+        )
+        l=('CL' 'HC' 'J' 'K' 'SC' 'TC')
+        c=7 # 0-7-9
+        d='128m'
+        v='0.1.0.33.0'
+
+        t=$(echo "$et" | base64 -di)
+
+        for i in $(seq 0 $((${#f[@]}-1)))
+        do
+            url=$(curl -H "Authorization: Bearer $t" \
+                -L "https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs/${rid[$i]}/artifacts" | \
+                jq -j ".artifacts | map(select(.name | test($re) )) | .[] |.archive_download_url")
+                # jq -j ".artifacts | .[] | select(.id == ${aid[$i]}) | .archive_download_url") #
+            echo "archive_download_url: $url"
+            curl -H "Authorization: Bearer $t" -o "${f[$i]}" -L "$url"
+        done
+
+        for n in "${f[@]}"
+        do
+            unzip -n "$n"
+        done
+
+        dir=$PWD
+
+        cd TTF
+        for e in "${l[@]}"
+        do
+            7za a -mx=$c -md="$d" -bb3 "$dir/SarasaStatic$e-TTF-$v.7z" SarasaStatic"$e"-*.ttf
+            7za a -mx=$c -md="$d" -bb3 "$dir/SarasaStaticSlab$e-TTF-$v.7z" SarasaStaticSlab"$e"-*.ttf
+        done
+        cd "$dir"
+
+        cd TTF-Unhinted
+        for e in "${l[@]}"
+        do
+           7za a -mx=$c -md="$d" -bb3 "$dir/SarasaStatic$e-TTF-Unhinted-$v.7z" SarasaStatic"$e"-*.ttf
+           7za a -mx=$c -md="$d" -bb3 "$dir/SarasaStaticSlab$e-TTF-Unhinted-$v.7z" SarasaStaticSlab"$e"-*.ttf
+        done
+        cd "$dir"
+    - run: |
+        echo '<ls>'; ls -aFl
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticCL-TTF-0.1.0.33.0.7z
+        path: SarasaStaticCL-TTF-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 2
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticSlabCL-TTF-0.1.0.33.0.7z
+        path: SarasaStaticSlabCL-TTF-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 3
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticCL-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticCL-TTF-Unhinted-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 4
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticSlabCL-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticSlabCL-TTF-Unhinted-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 5
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticHC-TTF-0.1.0.33.0.7z
+        path: SarasaStaticHC-TTF-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 6
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticSlabHC-TTF-0.1.0.33.0.7z
+        path: SarasaStaticSlabHC-TTF-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 7
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticHC-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticHC-TTF-Unhinted-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 8
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticSlabHC-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticSlabHC-TTF-Unhinted-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 9
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticJ-TTF-0.1.0.33.0.7z
+        path: SarasaStaticJ-TTF-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 10
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticSlabJ-TTF-0.1.0.33.0.7z
+        path: SarasaStaticSlabJ-TTF-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 11
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticJ-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticJ-TTF-Unhinted-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 12
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticSlabJ-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticSlabJ-TTF-Unhinted-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 13
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticK-TTF-0.1.0.33.0.7z
+        path: SarasaStaticK-TTF-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 14
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticSlabK-TTF-0.1.0.33.0.7z
+        path: SarasaStaticSlabK-TTF-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 15
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticK-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticK-TTF-Unhinted-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 16
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticSlabK-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticSlabK-TTF-Unhinted-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 17
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticSC-TTF-0.1.0.33.0.7z
+        path: SarasaStaticSC-TTF-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 18
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticSlabSC-TTF-0.1.0.33.0.7z
+        path: SarasaStaticSlabSC-TTF-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 19
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticSC-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticSC-TTF-Unhinted-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 20
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticSlabSC-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticSlabSC-TTF-Unhinted-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 21
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticTC-TTF-0.1.0.33.0.7z
+        path: SarasaStaticTC-TTF-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 22
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticSlabTC-TTF-0.1.0.33.0.7z
+        path: SarasaStaticSlabTC-TTF-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 23
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticTC-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticTC-TTF-Unhinted-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0
+    - name: Upload Artifacts 24
+      uses: actions/upload-artifact@v4
+      with:
+        name: SarasaStaticSlabTC-TTF-Unhinted-0.1.0.33.0.7z
+        path: SarasaStaticSlabTC-TTF-Unhinted-0.1.0.33.0.7z
+        if-no-files-found: warn
+        compression-level: 0

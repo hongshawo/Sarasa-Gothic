@@ -40,8 +40,13 @@ Please note that you will need *a lot of* memory to create TTCs, due to the huge
     - Quotes (`“”`) are narrow —— **UI**
   - Latin/Greek/Cyrillic character set being [Iosevka](https://github.com/be5invis/Iosevka)
     - Em dashes (`——`) are full width —— **Mono**
+    - No ligature, Em dashes (`——`) are full width —— **Static**(New! & released)
     - Em dashes (`——`) are half width —— **Term**
     - No ligature, Em dashes (`——`) are half width —— **Fixed**
+    
+    ![mono.png](./mono.png)&nbsp;&nbsp;![static.png](./static.png)
+    
+    ![term.png](./term.png)&nbsp;&nbsp;![fixed.png](./fixed.png)
 - Orthography dimension
   - `CL`: Classical orthography
   - `SC`, `TC`, `J`, `K`, `HC`: Regional orthography, following [Source Han Sans](https://github.com/adobe-fonts/source-han-sans) notations.

@@ -1,0 +1,22 @@
+name: pi CI
+
+on: workflow_dispatch
+
+jobs:
+  build:
+
+    runs-on: ubuntu-22.04
+    # runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: 'recursive'
+    - run: |
+        echo '<cpuinfo>'; cat /proc/cpuinfo
+        echo '<top>'; top -n 1 -b
+        echo '<disk space usage>'; df -h
+        echo '<pwd>'; pwd
+        echo '<ls>'; ls -aFl
+        echo '<set>'; set
+        echo '<pi>'; time { echo -e 'scale=5000\n4*a(1)' | BC_LINE_LENGTH=100 bc -ql; }

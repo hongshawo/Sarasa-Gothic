@@ -427,7 +427,8 @@ async function MakeProd(t, out, family, region, style, fragT) {
 // HINTING
 
 const HintDirPrefix = weight => `${BUILD}/hf-${weight}`;
-const JHint = oracle("hinting-jobs", async () => os.cpus().length);
+// const JHint = oracle("hinting-jobs", async () => os.cpus().length);
+const JHint = oracle("hinting-jobs", async function () { return os.cpus().length + 2; });
 
 const GroupHintStyleList = computed(`group-hint-style-list`, async t => {
 	const [config] = await t.need(Config);
