@@ -21,6 +21,9 @@ export function setFontMetadata(font, fMono, selectorList, encodings, namings) {
 		font.os2.ulCodePageRange1 |= Ot.Os2.CodePageRange1.CP949 | Ot.Os2.CodePageRange1.CP1361;
 	if (encodings.big5) font.os2.ulCodePageRange1 |= Ot.Os2.CodePageRange1.CP950;
 
+	// Enable generic support for CP1252 and 437
+	font.os2.ulCodePageRange1 |= Ot.Os2.CodePageRange1.CP1252 | Ot.Os2.CodePageRange2.CP437;
+
 	// Set Panose bits
 	font.os2.panose = {
 		bFamilyType: 2,
