@@ -42,7 +42,7 @@ jobs:
         l=('CL' 'HC' 'J' 'K' 'SC' 'TC')
         c=7 # 0-7-9
         d='128m'
-        v='0.1.0.33.0'
+        v='0.1.0.34.0'
 
         t=$(echo "$et" | base64 -di)
 
@@ -83,168 +83,168 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticCL-TTF-0.1.0.33.0.7z
-        path: SarasaStaticCL-TTF-0.1.0.33.0.7z
+        name: SarasaStaticCL-TTF-0.1.0.34.0.7z
+        path: SarasaStaticCL-TTF-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 2
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabCL-TTF-0.1.0.33.0.7z
-        path: SarasaStaticSlabCL-TTF-0.1.0.33.0.7z
+        name: SarasaStaticSlabCL-TTF-0.1.0.34.0.7z
+        path: SarasaStaticSlabCL-TTF-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 3
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticCL-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticCL-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticCL-TTF-Unhinted-0.1.0.34.0.7z
+        path: SarasaStaticCL-TTF-Unhinted-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 4
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabCL-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticSlabCL-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticSlabCL-TTF-Unhinted-0.1.0.34.0.7z
+        path: SarasaStaticSlabCL-TTF-Unhinted-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 5
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticHC-TTF-0.1.0.33.0.7z
-        path: SarasaStaticHC-TTF-0.1.0.33.0.7z
+        name: SarasaStaticHC-TTF-0.1.0.34.0.7z
+        path: SarasaStaticHC-TTF-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 6
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabHC-TTF-0.1.0.33.0.7z
-        path: SarasaStaticSlabHC-TTF-0.1.0.33.0.7z
+        name: SarasaStaticSlabHC-TTF-0.1.0.34.0.7z
+        path: SarasaStaticSlabHC-TTF-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 7
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticHC-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticHC-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticHC-TTF-Unhinted-0.1.0.34.0.7z
+        path: SarasaStaticHC-TTF-Unhinted-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 8
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabHC-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticSlabHC-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticSlabHC-TTF-Unhinted-0.1.0.34.0.7z
+        path: SarasaStaticSlabHC-TTF-Unhinted-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 9
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticJ-TTF-0.1.0.33.0.7z
-        path: SarasaStaticJ-TTF-0.1.0.33.0.7z
+        name: SarasaStaticJ-TTF-0.1.0.34.0.7z
+        path: SarasaStaticJ-TTF-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 10
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabJ-TTF-0.1.0.33.0.7z
-        path: SarasaStaticSlabJ-TTF-0.1.0.33.0.7z
+        name: SarasaStaticSlabJ-TTF-0.1.0.34.0.7z
+        path: SarasaStaticSlabJ-TTF-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 11
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticJ-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticJ-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticJ-TTF-Unhinted-0.1.0.34.0.7z
+        path: SarasaStaticJ-TTF-Unhinted-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 12
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabJ-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticSlabJ-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticSlabJ-TTF-Unhinted-0.1.0.34.0.7z
+        path: SarasaStaticSlabJ-TTF-Unhinted-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 13
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticK-TTF-0.1.0.33.0.7z
-        path: SarasaStaticK-TTF-0.1.0.33.0.7z
+        name: SarasaStaticK-TTF-0.1.0.34.0.7z
+        path: SarasaStaticK-TTF-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 14
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabK-TTF-0.1.0.33.0.7z
-        path: SarasaStaticSlabK-TTF-0.1.0.33.0.7z
+        name: SarasaStaticSlabK-TTF-0.1.0.34.0.7z
+        path: SarasaStaticSlabK-TTF-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 15
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticK-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticK-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticK-TTF-Unhinted-0.1.0.34.0.7z
+        path: SarasaStaticK-TTF-Unhinted-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 16
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabK-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticSlabK-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticSlabK-TTF-Unhinted-0.1.0.34.0.7z
+        path: SarasaStaticSlabK-TTF-Unhinted-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 17
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSC-TTF-0.1.0.33.0.7z
-        path: SarasaStaticSC-TTF-0.1.0.33.0.7z
+        name: SarasaStaticSC-TTF-0.1.0.34.0.7z
+        path: SarasaStaticSC-TTF-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 18
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabSC-TTF-0.1.0.33.0.7z
-        path: SarasaStaticSlabSC-TTF-0.1.0.33.0.7z
+        name: SarasaStaticSlabSC-TTF-0.1.0.34.0.7z
+        path: SarasaStaticSlabSC-TTF-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 19
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSC-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticSC-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticSC-TTF-Unhinted-0.1.0.34.0.7z
+        path: SarasaStaticSC-TTF-Unhinted-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 20
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabSC-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticSlabSC-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticSlabSC-TTF-Unhinted-0.1.0.34.0.7z
+        path: SarasaStaticSlabSC-TTF-Unhinted-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 21
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticTC-TTF-0.1.0.33.0.7z
-        path: SarasaStaticTC-TTF-0.1.0.33.0.7z
+        name: SarasaStaticTC-TTF-0.1.0.34.0.7z
+        path: SarasaStaticTC-TTF-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 22
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabTC-TTF-0.1.0.33.0.7z
-        path: SarasaStaticSlabTC-TTF-0.1.0.33.0.7z
+        name: SarasaStaticSlabTC-TTF-0.1.0.34.0.7z
+        path: SarasaStaticSlabTC-TTF-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 23
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticTC-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticTC-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticTC-TTF-Unhinted-0.1.0.34.0.7z
+        path: SarasaStaticTC-TTF-Unhinted-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 24
       uses: actions/upload-artifact@v4
       with:
-        name: SarasaStaticSlabTC-TTF-Unhinted-0.1.0.33.0.7z
-        path: SarasaStaticSlabTC-TTF-Unhinted-0.1.0.33.0.7z
+        name: SarasaStaticSlabTC-TTF-Unhinted-0.1.0.34.0.7z
+        path: SarasaStaticSlabTC-TTF-Unhinted-0.1.0.34.0.7z
         if-no-files-found: warn
         compression-level: 0
