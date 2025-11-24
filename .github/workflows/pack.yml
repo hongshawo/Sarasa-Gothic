@@ -14,7 +14,8 @@ jobs:
       with:
         submodules: 'recursive'
     - run: |
-        mkdir -p $HOME/.local/bin && cp -nv 7za.bin $HOME/.local/bin/7za
+        mkdir -p $HOME/.local/bin && \
+        cp -nv 7za.bin $HOME/.local/bin/7za && \
         chmod -v 755 $HOME/.local/bin/7za
         echo '<pwd>'; pwd
         echo '<ls>'; ls -aFl
@@ -50,8 +51,7 @@ jobs:
         do
             url=$(curl -H "Authorization: Bearer $t" \
                 -L "https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs/${rid[$i]}/artifacts" | \
-                jq -j ".artifacts | map(select(.name | test($re) )) | .[] |.archive_download_url")
-                # jq -j ".artifacts | .[] | select(.id == ${aid[$i]}) | .archive_download_url") #
+                jq -j ".artifacts | map(select(.name | test($re) )) | .[] | .archive_download_url")
             echo "archive_download_url: $url"
             curl -H "Authorization: Bearer $t" -o "${f[$i]}" -L "$url"
         done
