@@ -62,7 +62,8 @@ jobs:
         # unzip -n .build.zip -d .build    
         # #### ############## #### #
     - run: |
-        mkdir -p $HOME/.local/bin && cp -nv ttfautohint.bin $HOME/.local/bin/ttfautohint
+        mkdir -p $HOME/.local/bin && \
+        cp -nv ttfautohint.bin $HOME/.local/bin/ttfautohint && \
         chmod -v 755 $HOME/.local/bin/ttfautohint
         # cp -fv config.1.json config.json
     - run: |
