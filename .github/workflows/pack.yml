@@ -12,11 +12,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        submodules: 'recursive'
+        submodules: recursive
     - run: |
-        mkdir -p $HOME/.local/bin && \
-        cp -nv 7za.bin $HOME/.local/bin/7za && \
-        chmod -v 755 $HOME/.local/bin/7za
+        PATH="$GITHUB_WORKSPACE"/bin:"$PATH"
+        chmod -v 755 "$GITHUB_WORKSPACE"/bin/7za
         echo '<pwd>'; pwd
         echo '<ls>'; ls -aFl
     - run: |
