@@ -24,9 +24,9 @@ jobs:
         echo '<ls>'; ls -aFl
         echo '<set>'; set
 
-        PATH="$RUNNER_WORKSPACE"/bin:"$PATH"
-        chmod -v 755 "$RUNNER_WORKSPACE"/bin/ttfautohint
-        chmod -v 755 "$RUNNER_WORKSPACE"/bin/ttfautohint
+        PATH="$GITHUB_WORKSPACE"/bin:"$PATH"
+        chmod -v 755 "$GITHUB_WORKSPACE"/bin/ttfautohint
+        chmod -v 755 "$GITHUB_WORKSPACE"/bin/ttfautohint
         echo '<Node.js>'; node -v
         echo '<ttfautohint>'; ttfautohint -V
         echo '<jq>'; jq -V
