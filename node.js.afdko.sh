@@ -1,8 +1,16 @@
 #!/bin/bash
 
+if ! node -v | grep -i '^v[23][0-9]\.[0-9]\+\.[0-9]\+'; then
+	echo 'Node.js error.'
+	exit
+fi
+if ! ttfautohint -V | grep -i '^ttfautohint [1-9]\.'; then
+	echo 'ttfautohint error.'
+	exit
+fi
+
 python -m venv afdko_env
 source afdko_env/bin/activate
 python -m pip install --upgrade pip
-# python -m pip install https://github.com/adobe-type-tools/afdko/releases/download/4.0.2/afdko-4.0.2-py3-none-manylinux_2_28_x86_64.whl
 python -m pip install afdko
 npm install
