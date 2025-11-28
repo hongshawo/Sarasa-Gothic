@@ -6,7 +6,7 @@ name: Node.js.09-10.tc CI
 on: workflow_dispatch
 # on:
 #   workflow_run:
-#     workflows: ["Node.js.07-08.tc CI"]
+#     workflows: ['Node.js.07-08.tc CI']
 #     types: [completed]
 
 concurrency:
@@ -28,12 +28,25 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        submodules: 'recursive'
+        submodules: recursive
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+        cache: npm
+    - run: |
+        PATH="$GITHUB_WORKSPACE"/bin:"$PATH"
+        chmod -v 755 "$GITHUB_WORKSPACE"/bin/ttfautohint
+        jq -V
+        # cp -fv config.1.json config.json
+    - run: |
+        python -m venv afdko_env
+        source afdko_env/bin/activate
+        python -m pip install --upgrade pip
+        # python -m pip install https://github.com/adobe-type-tools/afdko/releases/download/3.9.6/afdko-3.9.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+        # python -m pip install https://github.com/adobe-type-tools/afdko/releases/download/4.0.2/afdko-4.0.2-py3-none-manylinux_2_28_x86_64.whl
+        python -m pip install afdko
+        npm install
     - run: |
         et='Z2l0aHViX3BhdF8xMUFTTjRMNVEwb2Q0NnhId01VT0I1X2lVZ0UwMGhTNmJxRU'
         et="$et"'RicmFnQ1VMaHVqN2hPbnJ2ajR5c01HSGwwZHpISWxTSVRFWDdRVmR2VGp1RERW'
@@ -61,19 +74,6 @@ jobs:
         # curl -H "Authorization: Bearer $t" -o "$f" -L "$url"
         # unzip -n .build.zip -d .build    
         # #### ############## #### #
-    - run: |
-        mkdir -p $HOME/.local/bin && \
-        cp -nv ttfautohint.bin $HOME/.local/bin/ttfautohint && \
-        chmod -v 755 $HOME/.local/bin/ttfautohint
-        # cp -fv config.1.json config.json
-    - run: |
-        python -m venv afdko_env
-        source afdko_env/bin/activate
-        python -m pip install --upgrade pip
-        # python -m pip install https://github.com/adobe-type-tools/afdko/releases/download/3.9.6/afdko-3.9.6-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-        # python -m pip install https://github.com/adobe-type-tools/afdko/releases/download/4.0.2/afdko-4.0.2-py3-none-manylinux_2_28_x86_64.whl
-        python -m pip install afdko
-        npm install
     - run: |
         source afdko_env/bin/activate
         cp -fv TC/config.09.ntb.json config.json && npm run build -- ttf
