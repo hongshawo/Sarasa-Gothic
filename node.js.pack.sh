@@ -5,6 +5,11 @@ c=7 # 0-7-9
 d='128m'
 v='0.1.0.33.0'
 
+if ! 7za | grep -i '^7-Zip.*Igor Pavlov'; then
+	echo '7-Zip error.'
+	exit
+fi
+
 dir=$PWD
 
 cd out/TTF
