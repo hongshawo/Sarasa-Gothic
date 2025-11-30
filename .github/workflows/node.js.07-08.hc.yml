@@ -6,7 +6,7 @@ name: Node.js.07-08.hc CI
 # on: workflow_dispatch
 on:
   workflow_run:
-    workflows: ['Node.js.05-06.cl CI']
+    workflows: ['Node.js.05-06.hc CI']
     types: [completed]
 
 concurrency:
