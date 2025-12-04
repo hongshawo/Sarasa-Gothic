@@ -14,7 +14,6 @@ jobs:
       with:
         submodules: recursive
     - run: |
-        PATH="$GITHUB_WORKSPACE"/bin:"$PATH"
         chmod -v 755 "$GITHUB_WORKSPACE"/bin/7zz
         echo '<pwd>'; pwd
         echo '<ls>'; ls -aFl
@@ -43,6 +42,7 @@ jobs:
         c=7 # 0-7-9
         d='128m'
         v='0.1.0.35.0'
+        PATH="$GITHUB_WORKSPACE"/bin:"$PATH"
 
         t=$(echo "$et" | base64 -di)
 
