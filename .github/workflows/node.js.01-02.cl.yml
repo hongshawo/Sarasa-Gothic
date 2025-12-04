@@ -17,8 +17,8 @@ jobs:
 
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
 
-    runs-on: ubuntu-22.04
-    # runs-on: self-hosted
+    # runs-on: ubuntu-22.04
+    runs-on: self-hosted
 
     strategy:
       matrix:
@@ -76,7 +76,6 @@ jobs:
     - run: |
         source afdko_env/bin/activate
         PATH="$GITHUB_WORKSPACE"/bin:"$PATH"
-        type -a ttfautohint ########
         cp -fv CL/config.01.nce.json config.json && npm run build -- ttf
         # npm run build -- full-clean
         cp -fv CL/config.02.sce.json config.json && npm run build -- ttf
