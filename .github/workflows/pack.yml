@@ -15,7 +15,7 @@ jobs:
         submodules: recursive
     - run: |
         PATH="$GITHUB_WORKSPACE"/bin:"$PATH"
-        chmod -v 755 "$GITHUB_WORKSPACE"/bin/7za
+        chmod -v 755 "$GITHUB_WORKSPACE"/bin/7zz
         echo '<pwd>'; pwd
         echo '<ls>'; ls -aFl
     - run: |
@@ -65,16 +65,16 @@ jobs:
         cd TTF
         for e in "${l[@]}"
         do
-            7za a -mx=$c -md="$d" -bb3 "$dir/SarasaStatic$e-TTF-$v.7z" SarasaStatic"$e"-*.ttf
-            7za a -mx=$c -md="$d" -bb3 "$dir/SarasaStaticSlab$e-TTF-$v.7z" SarasaStaticSlab"$e"-*.ttf
+            7zz a -mx=$c -md="$d" -bb3 "$dir/SarasaStatic$e-TTF-$v.7z" SarasaStatic"$e"-*.ttf
+            7zz a -mx=$c -md="$d" -bb3 "$dir/SarasaStaticSlab$e-TTF-$v.7z" SarasaStaticSlab"$e"-*.ttf
         done
         cd "$dir"
 
         cd TTF-Unhinted
         for e in "${l[@]}"
         do
-           7za a -mx=$c -md="$d" -bb3 "$dir/SarasaStatic$e-TTF-Unhinted-$v.7z" SarasaStatic"$e"-*.ttf
-           7za a -mx=$c -md="$d" -bb3 "$dir/SarasaStaticSlab$e-TTF-Unhinted-$v.7z" SarasaStaticSlab"$e"-*.ttf
+           7zz a -mx=$c -md="$d" -bb3 "$dir/SarasaStatic$e-TTF-Unhinted-$v.7z" SarasaStatic"$e"-*.ttf
+           7zz a -mx=$c -md="$d" -bb3 "$dir/SarasaStaticSlab$e-TTF-Unhinted-$v.7z" SarasaStaticSlab"$e"-*.ttf
         done
         cd "$dir"
     - run: |
