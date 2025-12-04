@@ -27,9 +27,9 @@ jobs:
         PATH="$GITHUB_WORKSPACE"/bin:"$PATH"
         chmod -v 755 "$GITHUB_WORKSPACE"/bin/ttfautohint
         chmod -v 755 "$GITHUB_WORKSPACE"/bin/7zz
-        echo '<Node.js>'; node -v
-        echo '<ttfautohint>'; ttfautohint -V
-        echo '<jq>'; jq -V
-        echo '<7-Zip>'; 7zz
+        echo '<Node.js>'; type -a node; node -v
+        echo '<ttfautohint>'; type -a ttfautohint; ttfautohint -V
+        echo '<jq>'; type -a jq; jq -V
+        echo '<7-Zip>'; type -a 7zz; 7zz
         
         echo '<pi>'; time { echo -e 'scale=5000\n4*a(1)' | BC_LINE_LENGTH=100 bc -ql; }
