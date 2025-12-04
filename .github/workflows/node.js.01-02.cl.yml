@@ -76,6 +76,7 @@ jobs:
     - run: |
         source afdko_env/bin/activate
         PATH="$GITHUB_WORKSPACE"/bin:"$PATH"
+        type -a ttfautohint ########
         cp -fv CL/config.01.nce.json config.json && npm run build -- ttf
         # npm run build -- full-clean
         cp -fv CL/config.02.sce.json config.json && npm run build -- ttf
