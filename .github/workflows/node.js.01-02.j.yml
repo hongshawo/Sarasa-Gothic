@@ -35,7 +35,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: npm
     - run: |
-        PATH="$GITHUB_WORKSPACE"/bin:"$PATH"
         chmod -v 755 "$GITHUB_WORKSPACE"/bin/ttfautohint
         jq -V
         # cp -fv config.1.json config.json
@@ -76,10 +75,9 @@ jobs:
         # #### ############## #### #
     - run: |
         source afdko_env/bin/activate
+        PATH="$GITHUB_WORKSPACE"/bin:"$PATH"
         cp -fv J/config.01.nje.json config.json && npm run build -- ttf
         # npm run build -- full-clean
-    - run: |
-        source afdko_env/bin/activate
         cp -fv J/config.02.sje.json config.json && npm run build -- ttf
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
