@@ -1,4 +1,4 @@
-name: Node.js.01.cl CI
+name: Node.js.04.hc CI
 
 on: workflow_dispatch
 
@@ -34,31 +34,31 @@ jobs:
         f='.build.zip'
         t=$(echo "$et" | base64 -di)
         mkdir -p .build
-        # rid=$( \
-        #     curl \
-        #         -H "Authorization: Bearer $t" \
-        #         -L \
-        #         'https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs' | \
-        #     jq -j ".workflow_runs | map(select((.name | test($re)) and (.conclusion == \"success\")))[0] | .id" \
-        # )
-        # echo "id: $rid"
-        # url=$( \
-        #     curl \
-        #         -H "Authorization: Bearer $t" \
-        #         -L \
-        #         "https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs/$rid/artifacts" | \
-        #     jq -j ".artifacts[] | select(.name == \".build\") | .archive_download_url" \
-        # )
-        # echo "archive_download_url: $url"
-        # curl -H "Authorization: Bearer $t" -o "$f" -L "$url"
-        # unzip -n .build.zip -d .build
+        rid=$( \
+            curl \
+                -H "Authorization: Bearer $t" \
+                -L \
+                'https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs' | \
+            jq -j ".workflow_runs | map(select((.name | test($re)) and (.conclusion == \"success\")))[0] | .id" \
+        )
+        echo "id: $rid"
+        url=$( \
+            curl \
+                -H "Authorization: Bearer $t" \
+                -L \
+                "https://api.github.com/repos/hongshawo/Sarasa-Gothic/actions/runs/$rid/artifacts" | \
+            jq -j ".artifacts[] | select(.name == \".build\") | .archive_download_url" \
+        )
+        echo "archive_download_url: $url"
+        curl -H "Authorization: Bearer $t" -o "$f" -L "$url"
+        unzip -n .build.zip -d .build
     - run: |
         source afdko_env/bin/activate
         PATH="$GITHUB_WORKSPACE"/bin:"$PATH"
-        cp -fv CL/config.01.nce.json config.json && npm run build -- ttf
+        cp -fv HC/config.04.shl.json config.json && npm run build -- ttf
     - uses: actions/upload-artifact@v4
       with:
-        name: out_01_cl
+        name: out_04_hc
         path: out
         if-no-files-found: warn
     - uses: actions/upload-artifact@v4
