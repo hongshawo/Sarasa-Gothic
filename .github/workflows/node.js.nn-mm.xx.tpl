@@ -45,7 +45,7 @@ jobs:
         re='"Node\\.js\\.[0-9]{2}-[0-9]{2}\\.[a-z]{1,2} CI"'
         f='.build.zip'
         # t=$(echo "$et" | base64 -di)
-        t="${{ secrets.F_TOKEN}}"
+        t="${{ secrets.F_TOKEN }}"
         mkdir -p .build
         ))c((rid=$( \
         ))c((    curl \
