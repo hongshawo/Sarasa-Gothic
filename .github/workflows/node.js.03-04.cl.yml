@@ -8,7 +8,7 @@ concurrency:
 jobs:
   build:
 
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v4
@@ -28,8 +28,6 @@ jobs:
         python -m pip install afdko
         npm install
     - run: |
-        et='Z2l0aHViX3BhdF8xMUFTTjRMNVEwanBEQ0VvaWxTR3pzX3p3M2xoZVhicUU4SH'
-        et="$et"'BFQUx5SWRkV0ZXNHJuTVlndGpPVmNKYVZKTFdJcjJTSVFSWUVPVXllQXhlcGdk'
         re='"Node\\.js\\.[0-9]{2}-[0-9]{2}\\.[a-z]{1,2} CI"'
         f='.build.zip'
         t="${{ secrets.F_TOKEN }}"
