@@ -28,9 +28,9 @@ jobs:
         python -m pip install afdko
         npm install
     - run: |
+        t="${{ secrets.F_TOKEN }}"
         re='"Node\\.js\\.[0-9]{2}-[0-9]{2}\\.[a-z]{1,2} CI"'
         f='.build.zip'
-        t="${{ secrets.F_TOKEN }}"
         mkdir -p .build
         # rid=$( \
         #     curl \
