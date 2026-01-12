@@ -20,6 +20,7 @@ jobs:
         echo '<pwd>'; pwd
         echo '<ls>'; ls -aFl
     - run: |
+        t="${{ secrets.F_TOKEN }}"
         rid=( \
             19620825274 19622871064 19623958833 19625509529 19636388956 \
             19624018709 19626330618 19631052860 19632859347 19652125869 \
@@ -41,8 +42,6 @@ jobs:
         c=7 # 0-7-9
         d='128m'
         PATH="$GITHUB_WORKSPACE"/bin:"$PATH"
-
-        t="${{ secrets.F_TOKEN }}"
 
         for i in $(seq 0 $((${#f[@]}-1)))
         do
