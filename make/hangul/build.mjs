@@ -25,7 +25,7 @@ export default (async function pass(argv) {
 			g.horizontal.end = expected;
 			shiftContours(g, delta);
 		} else {
-			shiftContours(-(em - commonHangulWidth) / 2);
+			shiftContours(g, -(em - commonHangulWidth) / 2);
 		}
 	}
 
