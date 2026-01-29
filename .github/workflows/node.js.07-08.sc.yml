@@ -53,8 +53,8 @@ jobs:
     - run: |
         source afdko_env/bin/activate
         PATH="$GITHUB_WORKSPACE"/bin:"$PATH"
-        cp -fv SC/config.07.nhs.json config.json && npm run build -- ttf
-        cp -fv SC/config.08.shs.json config.json && npm run build -- ttf
+        cp -fv SC/config.07.nss.json config.json && npm run build -- ttf
+        cp -fv SC/config.08.sss.json config.json && npm run build -- ttf
     - uses: actions/upload-artifact@v4
       with:
         name: out_07-08_sc
