@@ -3,7 +3,7 @@
 l=('CL' 'HC' 'J' 'K' 'SC' 'TC')
 c=7 # 0-7-9
 d='128m'
-v='0.1.0.35.0'
+v='0.1.0.36.0'
 
 if ! 7zz | grep -i '^7-Zip.*Igor Pavlov'; then
 	echo '7-Zip error.'
