@@ -3,7 +3,7 @@ name: pack CI
 on: workflow_dispatch
 
 env:
-  SV: 0.1.0.36.0
+  SV: 0.1.0.41.0
 
 jobs:
   build:
