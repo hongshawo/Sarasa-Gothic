@@ -1,9 +1,9 @@
 import { Ot } from "ot-builder";
 
 export function simplifySingleSub(table, tag) {
-	if (!table || !table.features || !table.lookups) return;
+	if (!table?.features || !table.lookups) return;
 
-	let mapping = new Map();
+	const mapping = new Map();
 	for (const feature of table.features) {
 		if (feature.tag !== tag) continue;
 		for (const lookup of feature.lookups) {

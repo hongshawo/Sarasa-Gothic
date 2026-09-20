@@ -2,7 +2,7 @@ import { CliProc, Ot } from "ot-builder";
 
 import { dropCharacters, dropFeature, dropHints } from "../helpers/drop.mjs";
 import { readFont, writeFont } from "../helpers/font-io.mjs";
-import { isFEMisc, isLongDash, isWS, isWestern } from "../helpers/unicode-kind.mjs";
+import { isFEMisc, isLongDash, isWestern, isWS } from "../helpers/unicode-kind.mjs";
 
 import { bakeLocalization } from "./bake-locl.mjs";
 import { buildContinuousEmDash } from "./build-continuous-em-dash.mjs";
@@ -17,7 +17,7 @@ async function pass(argv) {
 	dropHints(main);
 	dropCharacters(
 		main,
-		c => isWestern(c - 0) || isLongDash(c - 0, argv.term) || isWS(c - 0) || isFEMisc(c - 0)
+		c => isWestern(c - 0) || isLongDash(c - 0, argv.term) || isWS(c - 0) || isFEMisc(c - 0),
 	);
 	if (argv.pwid) toPWID(main, argv);
 	bakeLocalization(main, argv);
@@ -40,7 +40,7 @@ function aliasFeatMap(font, tag, uFrom, uTo) {
 	const gTo = font.cmap.unicode.get(uTo);
 	if (!gFrom || !gTo) return;
 
-	let affectedLookups = [];
+	const affectedLookups = [];
 	for (const feature of font.gsub.features) {
 		if (feature.tag === tag) {
 			for (const lookup of feature.lookups) affectedLookups.push(lookup);
@@ -49,7 +49,7 @@ function aliasFeatMap(font, tag, uFrom, uTo) {
 
 	for (const lookup of affectedLookups) {
 		if (!(lookup instanceof Ot.Gsub.Single)) continue;
-		let existing = lookup.mapping.get(gTo);
+		const existing = lookup.mapping.get(gTo);
 		if (existing) lookup.mapping.set(gFrom, existing);
 	}
 }

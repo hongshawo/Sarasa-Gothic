@@ -1,8 +1,8 @@
 export function unifySameFeatures(table) {
-	if (!table || !table.scripts || !table.features) return;
+	if (!table?.scripts || !table.features) return;
 
-	let nonAliasable = [];
-	let aliases = new Map();
+	const nonAliasable = [];
+	const aliases = new Map();
 
 	out: for (const feature of table.features) {
 		for (const existing of nonAliasable) {
@@ -22,19 +22,19 @@ export function unifySameFeatures(table) {
 
 function processLang(lang, aliases) {
 	if (lang.requiredFeature) {
-		let alias = aliases.get(lang.requiredFeature);
+		const alias = aliases.get(lang.requiredFeature);
 		if (alias) lang.requiredFeature = alias;
 	}
 	for (let i = 0; i < lang.features.length; i++) {
-		let alias = aliases.get(lang.features[i]);
+		const alias = aliases.get(lang.features[i]);
 		if (alias) lang.features[i] = alias;
 	}
 }
 
 function featureAliasable(a, b) {
 	if (a.tag !== b.tag) return false;
-	let lookupsA = new Set(a.lookups);
-	let lookupsB = new Set(b.lookups);
+	const lookupsA = new Set(a.lookups);
+	const lookupsB = new Set(b.lookups);
 
 	for (const x of lookupsA) if (!lookupsB.has(x)) return false;
 	for (const x of lookupsB) if (!lookupsA.has(x)) return false;

@@ -2,7 +2,7 @@ import { CliProc, Ot } from "ot-builder";
 
 import { dropCharacters, dropFeature, dropHints } from "../helpers/drop.mjs";
 import { readFont, writeFont } from "../helpers/font-io.mjs";
-import { isFEMisc, isLongDash, isWS, isWestern } from "../helpers/unicode-kind.mjs";
+import { isFEMisc, isLongDash, isWestern, isWS } from "../helpers/unicode-kind.mjs";
 
 import { transferMonoGeometry } from "./lgc-helpers.mjs";
 import { sanitizeSymbols, toPWID } from "./sanitize-symbols.mjs";

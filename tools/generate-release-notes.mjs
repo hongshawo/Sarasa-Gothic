@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "node:fs";
 
 const version = process.argv[2];
 const outputPath = process.argv[3];
@@ -21,19 +21,19 @@ async function main() {
 			downloadItem(DOWNLOAD, "", "SuperTTC", version, "7z"),
 			` | `,
 			downloadItem(DOWNLOAD, "", "SuperTTC", version, "zip"),
-			`|`
+			`|`,
 		)
 		.write(
 			`| TTC |`,
 			downloadItem(DOWNLOAD, "", "TTC", version, "7z"),
 			`|`,
 			downloadItem(DOWNLOAD, "", "TTC", version, "zip"),
-			`|`
+			`|`,
 		)
 		.write(
 			`| TTF |`,
 			downloadItem(DOWNLOAD, "", "TTF", version, "7z"),
-			`| (File too large for GitHub release artifact) |`
+			`| (File too large for GitHub release artifact) |`,
 		);
 
 	out.writeP(`### Single Family TTF Package`)
@@ -46,7 +46,7 @@ async function main() {
 			downloadItem(DOWNLOAD, f, "TTF", version, "7z"),
 			`|`,
 			downloadItem(DOWNLOAD, f, "TTF", version, "zip"),
-			`|`
+			`|`,
 		);
 	}
 	out.write("");
@@ -66,11 +66,11 @@ async function main() {
 function generateTableHeader(config) {
 	let o = `| Locale `;
 	for (const family of config.familyOrder) {
-		o += "| " + family + " ";
+		o += `| ${family} `;
 	}
 	o += "|\n";
 	o += `|---`;
-	for (const family of config.familyOrder) {
+	for (const _family of config.familyOrder) {
 		o += "|---";
 	}
 	o += "|";

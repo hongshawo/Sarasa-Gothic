@@ -15,7 +15,7 @@ export class GlyphFinder {
 		if (!this.font.gsub) return g;
 
 		let features = this.font.gsub.features;
-		let candidateLookups = [];
+		const candidateLookups = [];
 		if (scriptTag) {
 			const script = this.font.gsub.scripts.get(scriptTag);
 			const language = languageTag
@@ -32,7 +32,7 @@ export class GlyphFinder {
 
 		for (const lookup of candidateLookups) {
 			if (!(lookup instanceof Ot.Gsub.Single)) continue;
-			let mapped = lookup.mapping.get(g);
+			const mapped = lookup.mapping.get(g);
 			if (mapped) return mapped;
 		}
 

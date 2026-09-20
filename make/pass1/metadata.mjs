@@ -35,7 +35,7 @@ export function setFontMetadata(font, fMono, selectorList, encodings, namings) {
 		bArmStyle: 0,
 		bLetterform: 0,
 		bMidline: 0,
-		bXHeight: 0
+		bXHeight: 0,
 	};
 
 	// Set head bits
@@ -47,11 +47,11 @@ export function setFontMetadata(font, fMono, selectorList, encodings, namings) {
 }
 
 // Naming functions
-function nameFont(font, fMono, selectorList, encodings, namings) {
+function nameFont(font, _fMono, selectorList, _encodings, namings) {
 	const recs = [];
 	const defaultNg = namings.en_US;
 	const selector = new Set(selectorList);
-	for (let language in namings) {
+	for (const language in namings) {
 		const langID = langIDMap[language];
 		const ng = namings[language];
 		if (!ng || !langID || !selector.has(language)) continue;
@@ -99,12 +99,12 @@ function compatibilityName(family, style) {
 		}
 		if (/Italic/.test(style)) {
 			return {
-				family: family + " " + style.replace(/Italic/, "").trim(),
+				family: `${family} ${style.replace(/Italic/, "").trim()}`,
 				style: "Italic",
-				standardFour: false
+				standardFour: false,
 			};
 		} else {
-			return { family: family + " " + style, style: "Regular", standardFour: false };
+			return { family: `${family} ${style}`, style: "Regular", standardFour: false };
 		}
 	}
 }
@@ -124,7 +124,7 @@ function createNameTuple(sink, langID, family, style, localizedStyle) {
 	sink.push(nameEntry(WIN, UNICODE, langID, UNIQUE_NAME, `${family} ${style}`));
 	if (langID === langIDMap.en_US) {
 		sink.push(
-			nameEntry(WIN, UNICODE, langID, POSTSCRIPT, toPostscriptName(`${family} ${style}`))
+			nameEntry(WIN, UNICODE, langID, POSTSCRIPT, toPostscriptName(`${family} ${style}`)),
 		);
 	}
 }

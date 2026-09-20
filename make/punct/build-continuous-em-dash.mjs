@@ -19,7 +19,7 @@ export function buildContinuousEmDash(font) {
 	const emDashVCont = buildVGlyph(emDashV, boundV);
 	font.glyphs = Ot.ListGlyphStoreFactory.createStoreFromList([
 		...font.glyphs.decideOrder(),
-		...[emDashCont, emDashVCont]
+		...[emDashCont, emDashVCont],
 	]);
 
 	// Build CALT and VERT
@@ -39,12 +39,12 @@ function buildHGlyph(emDash, bound) {
 			Ot.Glyph.Point.create(
 				bound.xMax - adw - (bound.yMax - bound.yMin) / 2,
 				(bound.yMin + bound.yMax) / 2,
-				Ot.Glyph.PointType.Corner
+				Ot.Glyph.PointType.Corner,
 			),
 			Ot.Glyph.Point.create(bound.xMax - adw, bound.yMin, Ot.Glyph.PointType.Corner),
 			Ot.Glyph.Point.create(bound.xMax, bound.yMin, Ot.Glyph.PointType.Corner),
-			Ot.Glyph.Point.create(bound.xMax, bound.yMax, Ot.Glyph.PointType.Corner)
-		]
+			Ot.Glyph.Point.create(bound.xMax, bound.yMax, Ot.Glyph.PointType.Corner),
+		],
 	]);
 
 	return g1;
@@ -62,10 +62,10 @@ function buildVGlyph(emDashV, bound) {
 			Ot.Glyph.Point.create(
 				(bound.xMin + bound.xMax) / 2,
 				bound.yMin + adh + (bound.xMax - bound.xMin) / 2,
-				Ot.Glyph.PointType.Corner
+				Ot.Glyph.PointType.Corner,
 			),
-			Ot.Glyph.Point.create(bound.xMin, bound.yMin + adh, Ot.Glyph.PointType.Corner)
-		]
+			Ot.Glyph.Point.create(bound.xMin, bound.yMin + adh, Ot.Glyph.PointType.Corner),
+		],
 	]);
 
 	return g1;
@@ -84,17 +84,17 @@ function buildCalt(font, emDash, emDashCont) {
 		applications: [
 			{
 				at: 0,
-				apply: substSingle
-			}
-		]
+				apply: substSingle,
+			},
+		],
 	});
 	font.gsub.lookups.unshift(substCalt);
 
 	const calt = { tag: "calt", lookups: [substCalt] };
 	font.gsub.features.unshift(calt);
-	for (const [scriptTag, script] of font.gsub.scripts) {
+	for (const [_scriptTag, script] of font.gsub.scripts) {
 		if (script.defaultLanguage) script.defaultLanguage.features.unshift(calt);
-		for (const [langTag, lang] of script.languages) lang.features.unshift(calt);
+		for (const [_langTag, lang] of script.languages) lang.features.unshift(calt);
 	}
 }
 

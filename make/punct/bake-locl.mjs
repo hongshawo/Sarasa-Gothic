@@ -22,5 +22,5 @@ export function bakeLocalization(font, flags) {
 			break;
 	}
 
-	bakeFeature("locl", font, c => c != 0x2010, "hani", langTag);
+	bakeFeature("locl", font, c => c !== 0x2010, "hani", langTag);
 }

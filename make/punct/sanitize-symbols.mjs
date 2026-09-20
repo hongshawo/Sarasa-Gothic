@@ -5,7 +5,7 @@ import {
 	flatCloneGlyph,
 	getAdvanceWidth,
 	setAdvanceWidth,
-	shiftContours
+	shiftContours,
 } from "../helpers/geometry.mjs";
 import { GlyphFinder } from "../helpers/glyph-finder.mjs";
 
@@ -13,7 +13,7 @@ export const Sanitizers = {};
 
 // Adjust glyph metrics by CENTERING
 function CenterTo(widthF) {
-	return function (font, glyph, flags) {
+	return (font, glyph, flags) => {
 		const em = font.head.unitsPerEm;
 		const adw = getAdvanceWidth(glyph);
 
@@ -29,21 +29,21 @@ function CenterTo(widthF) {
 
 Sanitizers.ident = CenterTo(adw => adw);
 Sanitizers.toMono = CenterTo((adw, em) => Math.min(em, Math.ceil(adw / (em / 2)) * (em / 2)));
-Sanitizers.half = CenterTo((adw, em) => em / 2);
-Sanitizers.full = CenterTo((adw, em) => em);
+Sanitizers.half = CenterTo((_adw, em) => em / 2);
+Sanitizers.full = CenterTo((_adw, em) => em);
 Sanitizers.ellipsis = CenterTo((adw, em, flags) => {
 	if (flags.term) return 0.5 * em;
 	if (flags.goth || flags.mono) return em;
 	else return adw;
 });
-Sanitizers.interpunct = CenterTo((adw, em, flags) => {
+Sanitizers.interpunct = CenterTo((_adw, em, flags) => {
 	if (flags.mono || flags.pwid || flags.term) return em / 2;
 	else return em;
 });
 
 // Adjust glyph metrics by STRETCHING
 function StretchTo(widthF) {
-	return function (font, glyph, flags) {
+	return (font, glyph, flags) => {
 		const em = font.head.unitsPerEm;
 		const adw = getAdvanceWidth(glyph);
 
@@ -55,20 +55,20 @@ function StretchTo(widthF) {
 		return glyph;
 	};
 }
-Sanitizers.stretchAuto = StretchTo((adw, em, flags) => (flags.pwid || flags.term ? 0.5 : 1) * em);
-Sanitizers.stretchHalf = StretchTo((adw, em) => 0.5 * em);
-Sanitizers.stretchDual = StretchTo((adw, em) => 2 * em);
-Sanitizers.stretchTri = StretchTo((adw, em) => 3 * em);
+Sanitizers.stretchAuto = StretchTo((_adw, em, flags) => (flags.pwid || flags.term ? 0.5 : 1) * em);
+Sanitizers.stretchHalf = StretchTo((_adw, em) => 0.5 * em);
+Sanitizers.stretchDual = StretchTo((_adw, em) => 2 * em);
+Sanitizers.stretchTri = StretchTo((_adw, em) => 3 * em);
 
 // Left and right quotes
-Sanitizers.quoteRight = function (font, glyph, flags) {
+Sanitizers.quoteRight = (font, glyph, flags) => {
 	const em = font.head.unitsPerEm;
 	const finder = new GlyphFinder(font);
 
 	if (flags.pwid) {
 		copyGeometryData(
 			glyph,
-			Sanitizers.half(font, flatCloneGlyph(finder.subst("pwid", glyph)), flags)
+			Sanitizers.half(font, flatCloneGlyph(finder.subst("pwid", glyph)), flags),
 		);
 	}
 
@@ -80,14 +80,14 @@ Sanitizers.quoteRight = function (font, glyph, flags) {
 
 	return glyph;
 };
-Sanitizers.quoteLeft = function (font, glyph, flags) {
+Sanitizers.quoteLeft = (font, glyph, flags) => {
 	const em = font.head.unitsPerEm;
 	const finder = new GlyphFinder(font);
 
 	if (flags.pwid) {
 		copyGeometryData(
 			glyph,
-			Sanitizers.half(font, flatCloneGlyph(finder.subst("pwid", glyph)), flags)
+			Sanitizers.half(font, flatCloneGlyph(finder.subst("pwid", glyph)), flags),
 		);
 	}
 
@@ -101,8 +101,8 @@ Sanitizers.quoteLeft = function (font, glyph, flags) {
 	return glyph;
 };
 
-function HalfCompN(n, forceFullWidth, forceHalfWidth) {
-	return function (font, glyph, flags) {
+function _HalfCompN(n, forceFullWidth, forceHalfWidth) {
+	return (font, glyph, flags) => {
 		const em = font.head.unitsPerEm;
 		const finder = new GlyphFinder(font);
 
@@ -140,7 +140,7 @@ const sanitizerTypesModular = {
 	"\u31b5": "half",
 	"\u31b6": "half",
 	"\u31b7": "half",
-	"\u31bb": "half"
+	"\u31bb": "half",
 };
 
 const sanitizerTypesPwid = {
@@ -158,13 +158,13 @@ const sanitizerTypesPwid = {
 	"\u31b5": "half",
 	"\u31b6": "half",
 	"\u31b7": "half",
-	"\u31bb": "half"
+	"\u31bb": "half",
 };
 
 export function sanitizeSymbols(font, flags) {
 	const st = flags.pwid ? sanitizerTypesPwid : sanitizerTypesModular;
 	const backupSanType = flags.mono ? "toMono" : null;
-	let san = new Map();
+	const san = new Map();
 
 	for (const [c, g] of font.cmap.unicode.entries()) {
 		const stt = st[String.fromCodePoint(c)];

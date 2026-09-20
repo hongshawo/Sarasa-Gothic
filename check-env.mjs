@@ -4,7 +4,7 @@ function check(util) {
 	try {
 		which.sync(util);
 		console.log(` * External dependency <${util}> is present.`);
-	} catch (e) {
+	} catch (_e) {
 		console.error(` * External dependency <${util}> not found.`);
 	}
 }

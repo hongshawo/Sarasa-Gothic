@@ -10,10 +10,10 @@ export function dropGlyphNames(a) {
 }
 
 export function dropCharacters(a, fn) {
-	for (const [ch, g] of a.cmap.unicode.entries()) {
+	for (const [ch, _g] of a.cmap.unicode.entries()) {
 		if (fn(ch)) a.cmap.unicode.delete(ch);
 	}
-	for (const [ch, vs, g] of a.cmap.vs.entries()) {
+	for (const [ch, vs, _g] of a.cmap.vs.entries()) {
 		if (fn(ch)) a.cmap.vs.delete(ch, vs);
 	}
 }

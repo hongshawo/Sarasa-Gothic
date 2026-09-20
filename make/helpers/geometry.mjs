@@ -12,7 +12,7 @@ export function copyGeometryData(gDst, gSrc) {
 	if (gSrc.vertical) gDst.vertical = { ...gSrc.vertical };
 	if (gSrc.geometry) {
 		gDst.geometry = new Ot.Glyph.ContourSet(
-			Ot.GeometryUtil.apply(Ot.GeometryUtil.Flattener, gSrc.geometry)
+			Ot.GeometryUtil.apply(Ot.GeometryUtil.Flattener, gSrc.geometry),
 		);
 	}
 }

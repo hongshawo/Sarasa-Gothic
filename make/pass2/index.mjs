@@ -38,7 +38,7 @@ function addTrivialGdef(font) {
 	if (!font.gdef) {
 		font.gdef = new Ot.Gdef.Table();
 	}
-	if (!font.gdef.glyphClassDef || !font.gdef.glyphClassDef.size) {
+	if (!font.gdef.glyphClassDef?.size) {
 		font.gdef.glyphClassDef = new Map();
 		for (const g of font.glyphs.decideOrder()) {
 			font.gdef.glyphClassDef.set(g, Ot.Gdef.GlyphClass.Base);
@@ -47,14 +47,14 @@ function addTrivialGdef(font) {
 }
 
 function shareFeatures(table) {
-	if (!table || !table.scripts) return;
+	if (!table?.scripts) return;
 	const langDflt = table.scripts.get("DFLT").defaultLanguage;
 
 	for (const [scriptTag, script] of table.scripts) {
 		if (script.defaultLanguage && isFarEastScript(scriptTag)) {
 			script.defaultLanguage.features = [
 				...script.defaultLanguage.features,
-				...langDflt.features
+				...langDflt.features,
 			];
 		}
 
