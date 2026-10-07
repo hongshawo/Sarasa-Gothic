@@ -328,7 +328,7 @@ const LatinSource = file.make(
 			await run("otf2ttf", "-o", out.full, source.full);
 		} else {
 			await t.need(CheckTtfAutoHintExists);
-			// await run("ttfautohint", "-d", source.full, out.full);
+			await run("ttfautohint", "-d", source.full, out.full);
 		}
 	},
 );
