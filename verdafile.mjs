@@ -42,26 +42,26 @@ const _Start = phony("all", async t => {
 	await t.need(Ttf, Ttc);
 
 	const archiveTargets = [
-
+		// TtcArchive(`7z`, `TTC`, version),
 		TtcArchive(`7z`, `TTC-Unhinted`, version),
-
+		// TtcArchive(`zip`, `TTC`, version),
 		TtcArchive(`zip`, `TTC-Unhinted`, version),
-
+		// SuperTtcArchive(`7z`, `TTC`, version),
 		SuperTtcArchive(`7z`, `TTC-Unhinted`, version),
-
+		// SuperTtcArchive(`zip`, `TTC`, version),
 		SuperTtcArchive(`zip`, `TTC-Unhinted`, version),
-
+		// AllFamilyTtfArchive(`7z`, `TTF`, version),
 		AllFamilyTtfArchive(`7z`, `TTF-Unhinted`, version),
 	];
 
 	// Standalone archives
 	for (const f of config.familyOrder) {
-
+		// archiveTargets.push(SingleFamilyTtfArchive(`7z`, `TTF`, f, version));
 		archiveTargets.push(SingleFamilyTtfArchive(`7z`, `TTF-Unhinted`, f, version));
-
+		// archiveTargets.push(SingleFamilyTtfArchive(`zip`, `TTF`, f, version));
 		archiveTargets.push(SingleFamilyTtfArchive(`zip`, `TTF-Unhinted`, f, version));
 		for (const sf of config.subfamilyOrder) {
-
+			// archiveTargets.push(StandaloneTtfArchive(`7z`, `TTF`, f, sf, version));
 			archiveTargets.push(StandaloneTtfArchive(`7z`, `TTF-Unhinted`, f, sf, version));
 		}
 	}
@@ -328,7 +328,7 @@ const LatinSource = file.make(
 			await run("otf2ttf", "-o", out.full, source.full);
 		} else {
 			await t.need(CheckTtfAutoHintExists);
-			await run("ttfautohint", "-d", source.full, out.full);
+			// await run("ttfautohint", "-d", source.full, out.full);
 		}
 	},
 );
@@ -377,7 +377,7 @@ const Pass1Hinted = file.make(
 			CheckTtfAutoHintExists,
 			de(out.dir),
 		);
-		await run("ttfautohint", pass1.full, out.full);
+		// await run("ttfautohint", pass1.full, out.full);
 	},
 );
 
