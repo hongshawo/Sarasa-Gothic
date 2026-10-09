@@ -2,6 +2,7 @@
 
 source afdko_env/bin/activate
 
+cp -fv verdafile.orig.mjs verdafile.mjs && \
 cp -fv TC/config.01.nte.json config.json && npm run build -- ttf && \
 cp -fv TC/config.02.ste.json config.json && npm run build -- ttf && \
 cp -fv TC/config.03.ntl.json config.json && npm run build -- ttf && \

@@ -12,7 +12,7 @@ jobs:
     timeout-minutes: 60
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
       with:
         submodules: recursive
     - run: |
@@ -59,186 +59,188 @@ jobs:
 
         dir=$PWD
 
-        cd TTF
-        for e in "${l[@]}"
-        do
-            7zz a -mx=$c -md="$d" -bb3 "$dir/SarasaStatic$e-TTF-$SV.7z" SarasaStatic"$e"-*.ttf
-            7zz a -mx=$c -md="$d" -bb3 "$dir/SarasaStaticSlab$e-TTF-$SV.7z" SarasaStaticSlab"$e"-*.ttf
-        done
-        cd "$dir"
+        if cd TTF
+        then
+            for e in "${l[@]}"
+            do
+                7zz a -mx=$c -md="$d" -bb3 "$dir/SarasaStatic$e-TTF-$SV.7z" SarasaStatic"$e"-*.ttf
+                7zz a -mx=$c -md="$d" -bb3 "$dir/SarasaStaticSlab$e-TTF-$SV.7z" SarasaStaticSlab"$e"-*.ttf
+            done
+            cd "$dir"
+        fi
 
         cd TTF-Unhinted
         for e in "${l[@]}"
         do
-           7zz a -mx=$c -md="$d" -bb3 "$dir/SarasaStatic$e-TTF-Unhinted-$SV.7z" SarasaStatic"$e"-*.ttf
-           7zz a -mx=$c -md="$d" -bb3 "$dir/SarasaStaticSlab$e-TTF-Unhinted-$SV.7z" SarasaStaticSlab"$e"-*.ttf
+            7zz a -mx=$c -md="$d" -bb3 "$dir/SarasaStatic$e-TTF-Unhinted-$SV.7z" SarasaStatic"$e"-*.ttf
+            7zz a -mx=$c -md="$d" -bb3 "$dir/SarasaStaticSlab$e-TTF-Unhinted-$SV.7z" SarasaStaticSlab"$e"-*.ttf
         done
         cd "$dir"
     - run: |
         echo '<ls>'; ls -aFl
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticCL-TTF-${{ env.SV }}.7z
         path: SarasaStaticCL-TTF-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 2
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticSlabCL-TTF-${{ env.SV }}.7z
         path: SarasaStaticSlabCL-TTF-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 3
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticCL-TTF-Unhinted-${{ env.SV }}.7z
         path: SarasaStaticCL-TTF-Unhinted-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 4
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticSlabCL-TTF-Unhinted-${{ env.SV }}.7z
         path: SarasaStaticSlabCL-TTF-Unhinted-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 5
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticHC-TTF-${{ env.SV }}.7z
         path: SarasaStaticHC-TTF-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 6
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticSlabHC-TTF-${{ env.SV }}.7z
         path: SarasaStaticSlabHC-TTF-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 7
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticHC-TTF-Unhinted-${{ env.SV }}.7z
         path: SarasaStaticHC-TTF-Unhinted-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 8
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticSlabHC-TTF-Unhinted-${{ env.SV }}.7z
         path: SarasaStaticSlabHC-TTF-Unhinted-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 9
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticJ-TTF-${{ env.SV }}.7z
         path: SarasaStaticJ-TTF-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 10
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticSlabJ-TTF-${{ env.SV }}.7z
         path: SarasaStaticSlabJ-TTF-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 11
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticJ-TTF-Unhinted-${{ env.SV }}.7z
         path: SarasaStaticJ-TTF-Unhinted-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 12
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticSlabJ-TTF-Unhinted-${{ env.SV }}.7z
         path: SarasaStaticSlabJ-TTF-Unhinted-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 13
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticK-TTF-${{ env.SV }}.7z
         path: SarasaStaticK-TTF-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 14
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticSlabK-TTF-${{ env.SV }}.7z
         path: SarasaStaticSlabK-TTF-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 15
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticK-TTF-Unhinted-${{ env.SV }}.7z
         path: SarasaStaticK-TTF-Unhinted-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 16
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticSlabK-TTF-Unhinted-${{ env.SV }}.7z
         path: SarasaStaticSlabK-TTF-Unhinted-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 17
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticSC-TTF-${{ env.SV }}.7z
         path: SarasaStaticSC-TTF-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 18
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticSlabSC-TTF-${{ env.SV }}.7z
         path: SarasaStaticSlabSC-TTF-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 19
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticSC-TTF-Unhinted-${{ env.SV }}.7z
         path: SarasaStaticSC-TTF-Unhinted-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 20
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticSlabSC-TTF-Unhinted-${{ env.SV }}.7z
         path: SarasaStaticSlabSC-TTF-Unhinted-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 21
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticTC-TTF-${{ env.SV }}.7z
         path: SarasaStaticTC-TTF-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 22
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticSlabTC-TTF-${{ env.SV }}.7z
         path: SarasaStaticSlabTC-TTF-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 23
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticTC-TTF-Unhinted-${{ env.SV }}.7z
         path: SarasaStaticTC-TTF-Unhinted-${{ env.SV }}.7z
         if-no-files-found: warn
         compression-level: 0
     - name: Upload Artifacts 24
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: SarasaStaticSlabTC-TTF-Unhinted-${{ env.SV }}.7z
         path: SarasaStaticSlabTC-TTF-Unhinted-${{ env.SV }}.7z

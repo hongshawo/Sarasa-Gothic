@@ -42,26 +42,26 @@ const _Start = phony("all", async t => {
 	await t.need(Ttf, Ttc);
 
 	const archiveTargets = [
-		TtcArchive(`7z`, `TTC`, version),
+		// TtcArchive(`7z`, `TTC`, version),
 		TtcArchive(`7z`, `TTC-Unhinted`, version),
-		TtcArchive(`zip`, `TTC`, version),
+		// TtcArchive(`zip`, `TTC`, version),
 		TtcArchive(`zip`, `TTC-Unhinted`, version),
-		SuperTtcArchive(`7z`, `TTC`, version),
+		// SuperTtcArchive(`7z`, `TTC`, version),
 		SuperTtcArchive(`7z`, `TTC-Unhinted`, version),
-		SuperTtcArchive(`zip`, `TTC`, version),
+		// SuperTtcArchive(`zip`, `TTC`, version),
 		SuperTtcArchive(`zip`, `TTC-Unhinted`, version),
-		AllFamilyTtfArchive(`7z`, `TTF`, version),
+		// AllFamilyTtfArchive(`7z`, `TTF`, version),
 		AllFamilyTtfArchive(`7z`, `TTF-Unhinted`, version),
 	];
 
 	// Standalone archives
 	for (const f of config.familyOrder) {
-		archiveTargets.push(SingleFamilyTtfArchive(`7z`, `TTF`, f, version));
+		// archiveTargets.push(SingleFamilyTtfArchive(`7z`, `TTF`, f, version));
 		archiveTargets.push(SingleFamilyTtfArchive(`7z`, `TTF-Unhinted`, f, version));
-		archiveTargets.push(SingleFamilyTtfArchive(`zip`, `TTF`, f, version));
+		// archiveTargets.push(SingleFamilyTtfArchive(`zip`, `TTF`, f, version));
 		archiveTargets.push(SingleFamilyTtfArchive(`zip`, `TTF-Unhinted`, f, version));
 		for (const sf of config.subfamilyOrder) {
-			archiveTargets.push(StandaloneTtfArchive(`7z`, `TTF`, f, sf, version));
+			// archiveTargets.push(StandaloneTtfArchive(`7z`, `TTF`, f, sf, version));
 			archiveTargets.push(StandaloneTtfArchive(`7z`, `TTF-Unhinted`, f, sf, version));
 		}
 	}
@@ -83,16 +83,19 @@ const _Start = phony("all", async t => {
 });
 
 const _SuperTtc = phony(`super-ttc`, async target => {
-	await target.need(SuperTtcFile`TTC`, SuperTtcFile`TTC-Unhinted`);
+	// await target.need(SuperTtcFile`TTC`, SuperTtcFile`TTC-Unhinted`);
+	await target.need(SuperTtcFile`TTC-Unhinted`);
 });
 
 const Ttc = phony(`ttc`, async t => {
 	await t.need(Ttf);
-	await t.need(TtcFontFiles`TTC`, TtcFontFiles`TTC-Unhinted`);
+	// await t.need(TtcFontFiles`TTC`, TtcFontFiles`TTC-Unhinted`);
+	await t.need(TtcFontFiles`TTC-Unhinted`);
 });
 
 const Ttf = phony(`ttf`, async t => {
-	await t.need(TtfFontFiles`TTF`, TtfFontFiles`TTF-Unhinted`);
+	// await t.need(TtfFontFiles`TTF`, TtfFontFiles`TTF-Unhinted`);
+	await t.need(TtfFontFiles`TTF-Unhinted`);
 });
 
 const CheckTtfAutoHintExists = oracle("oracle:check-ttfautohint-exists", async _target => {

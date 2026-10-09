@@ -14,18 +14,18 @@ jobs:
 # 
     # if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
 
-    # runs-on: ubuntu-22.04
-    runs-on: self-hosted
+    runs-on: ubuntu-22.04
+    # runs-on: self-hosted
 # 
     # strategy:
     #   matrix:
     #     node-version: [20.x]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
       with:
         submodules: recursive
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v7
       with:
         # node-version: ${{ matrix.node-version }}
         node-version: 22.x
@@ -69,14 +69,14 @@ jobs:
         source afdko_env/bin/activate
         PATH="$GITHUB_WORKSPACE"/bin:"$PATH"
         # npm run build -- full-clean
-        cp -fv ))lu((/config.))n1((.))t1((.json config.json && npm run build -- ttf
-        cp -fv ))lu((/config.))n2((.))t2((.json config.json && npm run build -- ttf
-    - uses: actions/upload-artifact@v4
+        cp -fv ))lu((/config.))n1((.))t1((.json config.json && cp -fv verdafile.uh.mjs verdafile.mjs && npm run build -- ttf
+        cp -fv ))lu((/config.))n2((.))t2((.json config.json && cp -fv verdafile.uh.mjs verdafile.mjs && npm run build -- ttf
+    - uses: actions/upload-artifact@v7
       with:
         name: out_))n1((-))n2((_))l((
         path: out
         if-no-files-found: warn
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v7
       with:
         name: .build
         path: .build
